@@ -293,31 +293,10 @@ const DATA = {
     { name: "Project Four", cat: "Category", desc: "One line about the project." },
   ],
 };
-// AI assistant knowledge — edit freely. This is what the bot "knows" about you.
-const AI_CONTEXT = `You are a friendly, concise AI assistant embedded on ${DATA.name}'s personal portfolio website. You answer questions from recruiters and hiring managers about ${DATA.name}.
-
-ABOUT:
-- Name: ${DATA.name}
-- Title/role: [EDIT: your current title]
-- Based in: Atlanta, Georgia
-- Experience: 9+ years in [EDIT: your field]
-- Specialties: [EDIT: list your top skills/specialties]
-
-EXPERIENCE:
-[EDIT: paste a few bullets of your work history here]
-
-SKILLS & PROJECTS:
-[EDIT: list your key skills and notable projects]
-
-AVAILABILITY & CONTACT:
-- Currently open to new opportunities: [EDIT: yes/no + what kind]
-- Best way to reach: ${DATA.email}
-
-RULES:
-- Keep answers short (1-3 sentences), warm, and professional.
-- Only answer based on the info above. If you don't know something, say you're not sure and suggest they email ${DATA.name} directly at ${DATA.email}.
-- Never invent facts, dates, or employers.
-- If asked something off-topic, gently steer back to ${DATA.name}'s background.`;
+// NOTE: The AI assistant's knowledge now lives in the backend file
+// functions/api/chat.js (the SYSTEM_PROMPT there). Edit it in that file.
+// This block is no longer used by the chat and can be ignored.
+const AI_CONTEXT = `(moved to functions/api/chat.js)`;
 // ================================================
 
 function Nav({ page, go }) {
@@ -544,18 +523,13 @@ function Assistant() {
     try {
       const history = next.filter(m => m.role !== "bot" || m !== next[0])
         .map(m => ({ role: m.role === "user" ? "user" : "assistant", content: m.text }));
-      const res = await fetch("https://api.anthropic.com/v1/messages", {
+      const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-6",
-          max_tokens: 1000,
-          system: AI_CONTEXT,
-          messages: history,
-        }),
+        body: JSON.stringify({ messages: history }),
       });
       const data = await res.json();
-      const reply = data.content.filter(c => c.type === "text").map(c => c.text).join("\n").trim();
+      const reply = data.reply;
       setMsgs(m => [...m, { role: "bot", text: reply || "Sorry, I didn't catch that. Could you rephrase?" }]);
     } catch (e) {
       setMsgs(m => [...m, { role: "bot", text: `Something went wrong on my end. You can always reach ${DATA.name} directly at ${DATA.email}.` }]);

@@ -263,34 +263,33 @@ const { useState, useRef, useEffect } = React;
 const DATA = {
   name: "Laura Anthony",
   brandInitial: "L",
-  role: "Product Designer",       // shown vertically in hero
-  tagline: "It's Laura — turning complex problems into elegant systems",
+  role: "AI · Education · Apple",       // shown vertically in hero
+  tagline: "It's Laura — I make advanced AI simple, so educators can focus on teaching",
   year: "2026",
-  email: "hello@lanthony.app",
+  email: "lbanthony91@gmail.com",
   stats: [
-    { num: "200", sup: "+", label: "Projects completed" },
-    { num: "50", sup: "+", label: "Clients served" },
+    { num: "10", sup: "", label: "Years in education tech" },
+    { num: "1,000", sup: "+", label: "Institutions served" },
   ],
   about: {
-    lede: "I'm a [your title] who specializes in [your focus]. My approach blends [strength one] with [strength two] to deliver work that doesn't just look right — it works.",
+    lede: "I'm an education technology leader working at the intersection of AI and the classroom. For 10+ years I've turned complex, fast-moving technology into adoption programs, enablement, and guidance that scale — translating what teachers, IT leaders, and districts actually need into experiences that work in the real world.",
     meta: [
-      { k: "Experience", v: "9", sub: "+ years" },
+      { k: "Experience", v: "10", sub: "+ years" },
       { k: "Based in", v: "Atlanta", sub: "GA" },
-      { k: "Focus", v: "Education", sub: "" },
+      { k: "Focus", v: "AI in EDU", sub: "" },
       { k: "Status", v: "Open", sub: "to roles" },
     ],
   },
   experience: [
-    { role: "Senior Role, Company", date: "2024 — Present", desc: "Short description of what you owned and shipped here.", tags: ["Tag", "Tag"] },
-    { role: "Previous Role, Company", date: "2020 — 2024", desc: "Short description of what you owned and shipped here.", tags: ["Tag", "Tag"] },
-    { role: "Earlier Role, Company", date: "2018 — 2020", desc: "Short description of what you owned and shipped here.", tags: ["Tag"] },
-    { role: "First Role, Company", date: "2016 — 2018", desc: "Short description of what you owned and shipped here.", tags: ["Tag"] },
+    { role: "Consulting Engineer for AI in Education — Apple", date: "May 2019 — Present", desc: "Lead education field engineering and AI enablement: built Apple's Deployment Success Engineering function into a 10-engineer national program, cut deployment timelines 60% across 1,000+ institutions at 99% satisfaction, and developed worldwide AI adoption guidance for K-12 and Higher Ed.", tags: ["AI Adoption", "Enablement", "Product Feedback"] },
+    { role: "Co-Founder & Product Lead — LaunchFrame", date: "Dec 2014 — May 2019", desc: "Founded and scaled a boutique IT consultancy to 150+ clients across education, SMB, and legal, achieving 45% YoY growth and 85% retention through high-touch onboarding, a hybrid support model, and a talent pathway that moved specialists into engineering roles.", tags: ["Product", "Customer Success"] },
+    { role: "Engineering Manager, Ed Tech — The Westminster Schools", date: "Jan 2018 — May 2019", desc: "Led a 14-person team supporting 3,000+ users; pioneered an open-source NanoMDM deployment, cut support tickets 35% via self-service workflows, and authored technology and student-privacy policy with legal and board review.", tags: ["Leadership", "K-12"] },
   ],
   work: [
-    { name: "Project One", cat: "Category", desc: "One line about the project." },
-    { name: "Project Two", cat: "Category", desc: "One line about the project." },
-    { name: "Project Three", cat: "Category", desc: "One line about the project." },
-    { name: "Project Four", cat: "Category", desc: "One line about the project." },
+    { name: "Deployment Success Engineering", cat: "National Program", desc: "Built Apple's education deployment function from concept to a 10-engineer national team — 60% faster rollouts, 99% satisfaction, 1,000+ institutions." },
+    { name: "AI Adoption for Education", cat: "AI Strategy", desc: "Worldwide K-12 and Higher Ed AI enablement: privacy-centered architecture, Core ML, and classroom workflows turned into field-ready guidance." },
+    { name: "Life of Mac Analytics", cat: "Data & Insights", desc: "Analyzed 5,000+ data points and built an LLM-powered insights tool — lifting adoption 25% and field-to-engineering communication 40%." },
+    { name: "Apple School Manager: Identity", cat: "Platform", desc: "Partnered with engineering on OneRoster and ASM API Keys, translating district SIS and rostering needs into scalable identity and access workflows." },
   ],
 };
 // NOTE: The AI assistant's knowledge now lives in the backend file
@@ -367,7 +366,7 @@ function HomeExtras({ go }) {
         <div className="wrap">
           <div className="section-head">
             <h2 className="section-title">Selected<br/>Work</h2>
-            <p className="section-lead">A few projects I'm proud of. Swap these placeholders for your real case studies.</p>
+            <p className="section-lead">A few initiatives I'm proud of — from national programs to AI adoption in the classroom.</p>
           </div>
           <div className="work-grid">
             {DATA.work.slice(0,2).map((w,i) => <WorkCard key={i} w={w} />)}
@@ -434,7 +433,7 @@ function About() {
         <div className="wrap">
           <div className="section-head">
             <h2 className="section-title">Explore My<br/>Journey</h2>
-            <p className="section-lead">Over the years I've had the chance to work across a range of teams and projects. Replace these rows with your real history.</p>
+            <p className="section-lead">A decade of work across field engineering, product, and education — translating complex technology into adoption that scales.</p>
           </div>
           {DATA.experience.map((e,i) => (
             <div className="exp-row" key={i}>
@@ -462,7 +461,7 @@ function Work() {
               <div className="eyebrow" style={{marginBottom:24}}>Portfolio</div>
               <h2 className="section-title">Latest Works</h2>
             </div>
-            <p className="section-lead">Selected projects spanning design, strategy, and deployment. Replace with your own case studies and images.</p>
+            <p className="section-lead">Selected initiatives spanning AI adoption, national program-building, identity platforms, and data-driven insight in education.</p>
           </div>
           <div className="work-grid">
             {DATA.work.map((w,i) => <WorkCard key={i} w={w} />)}

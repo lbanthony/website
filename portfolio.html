@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laura Anthony — Portfolio</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+</head>
+<body>
+<div id="app"></div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap');
+
+  :root {
+    --primary: #222222;
+    --secondary: #7B7B7B;
+    --tertiary: #F8F8F8;
+    --white: #FFFFFF;
+    --line: #E4E4E4;
+    --display: 'Space Grotesk', sans-serif;
+    --body: 'Inter', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  #app {
+    font-family: var(--body);
+    color: var(--primary);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  ::selection { background: var(--primary); color: var(--white); }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px clamp(20px, 5vw, 64px);
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand {
+    font-family: var(--display); font-weight: 600; font-size: 18px;
+    letter-spacing: -0.02em; cursor: pointer; display: flex; align-items: center; gap: 9px;
+  }
+  .brand .mark {
+    width: 22px; height: 22px; border: 1.5px solid var(--primary);
+    border-radius: 50%; display: grid; place-items: center; font-size: 11px;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links button {
+    font-family: var(--body); font-size: 14px; color: var(--secondary);
+    background: none; border: none; cursor: pointer; padding: 7px 14px;
+    border-radius: 100px; transition: all .25s ease; letter-spacing: -0.01em;
+  }
+  .nav-links button:hover { color: var(--primary); }
+  .nav-links button.active { color: var(--primary); background: var(--tertiary); }
+  .nav-cta {
+    font-family: var(--body); font-size: 14px; color: var(--primary);
+    background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid var(--primary); padding-bottom: 2px; transition: opacity .2s;
+  }
+  .nav-cta:hover { opacity: 0.6; }
+
+  /* ---------- Page shell ---------- */
+  .page { animation: fade .5s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+
+  .eyebrow {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.14em;
+    color: var(--secondary); display: flex; align-items: center; gap: 9px;
+  }
+  .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--primary); }
+
+  /* ---------- Hero ---------- */
+  .hero { padding: clamp(40px, 7vw, 80px) 0 clamp(60px, 9vw, 110px); }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 0.85fr; gap: clamp(24px, 5vw, 60px); align-items: end;
+  }
+  .hero-side {
+    writing-mode: vertical-rl; transform: rotate(180deg);
+    font-size: 12px; letter-spacing: 0.12em; color: var(--secondary);
+    text-transform: uppercase; align-self: stretch; padding-bottom: 4px;
+  }
+  .hero-left { display: flex; flex-direction: column; }
+  .hero-stats { display: flex; gap: 44px; margin-bottom: clamp(30px, 6vw, 64px); }
+  .stat .num {
+    font-family: var(--display); font-size: clamp(28px, 4vw, 40px); font-weight: 500;
+    letter-spacing: -0.03em; line-height: 1;
+  }
+  .stat .num sup { font-size: 0.5em; vertical-align: super; color: var(--secondary); font-weight: 400; }
+  .stat .lbl { font-size: 12.5px; color: var(--secondary); margin-top: 8px; }
+  .hello {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(80px, 17vw, 230px); line-height: 0.82;
+    letter-spacing: -0.05em;
+  }
+  .hero-tag {
+    font-size: clamp(14px, 1.6vw, 17px); color: var(--secondary);
+    margin-top: 22px; display: flex; align-items: center; gap: 10px;
+  }
+  .hero-tag::before { content: '—'; color: var(--primary); }
+  .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; }
+  .scroll-hint { font-size: 13px; color: var(--secondary); display: flex; align-items: center; gap: 8px; }
+  .year { font-size: 13px; color: var(--secondary); }
+  .hero-portrait {
+    aspect-ratio: 4/4.4; background: var(--tertiary);
+    border-radius: 4px; overflow: hidden; position: relative;
+    display: grid; place-items: center;
+  }
+  .hero-portrait .ph {
+    font-family: var(--display); font-size: 13px; color: var(--secondary);
+    letter-spacing: 0.04em; text-align: center; padding: 20px; line-height: 1.7;
+    filter: grayscale(1);
+  }
+  .hero-portrait img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); }
+
+  /* ---------- Generic sections ---------- */
+  .section { padding: clamp(56px, 9vw, 120px) 0; }
+  .section.tint { background: var(--tertiary); }
+  .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: clamp(40px, 6vw, 72px); align-items: end; }
+  .section-title {
+    font-family: var(--display); font-weight: 500; letter-spacing: -0.03em;
+    font-size: clamp(30px, 4.5vw, 52px); line-height: 1.02;
+  }
+  .section-lead { font-size: 15px; color: var(--secondary); max-width: 420px; justify-self: end; }
+  .section-lead.left { justify-self: start; }
+
+  /* ---------- About blocks ---------- */
+  .lede {
+    font-family: var(--display); font-weight: 400; letter-spacing: -0.02em;
+    font-size: clamp(22px, 3vw, 34px); line-height: 1.28; max-width: 900px;
+  }
+  .lede .dim { color: var(--secondary); }
+  .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); margin-top: clamp(50px, 7vw, 90px); border: 1px solid var(--line); }
+  .meta-cell { background: var(--white); padding: 28px 24px; }
+  .meta-cell .k { font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.1em; }
+  .meta-cell .v { font-family: var(--display); font-size: 26px; font-weight: 500; letter-spacing: -0.02em; margin-top: 14px; }
+  .meta-cell .v small { font-size: 13px; color: var(--secondary); font-weight: 400; }
+
+  /* ---------- Experience list ---------- */
+  .exp-row {
+    display: grid; grid-template-columns: 1.1fr 1.3fr auto; gap: 30px;
+    padding: 30px 0; border-top: 1px solid var(--line); align-items: start;
+    transition: padding-left .3s ease; cursor: default;
+  }
+  .exp-row:last-child { border-bottom: 1px solid var(--line); }
+  .exp-row:hover { padding-left: 12px; }
+  .exp-role { font-family: var(--display); font-size: clamp(18px, 2vw, 22px); font-weight: 500; letter-spacing: -0.02em; }
+  .exp-date { font-size: 13px; color: var(--secondary); margin-top: 7px; }
+  .exp-desc { font-size: 14.5px; color: var(--secondary); padding-top: 3px; }
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag { font-size: 12px; color: var(--primary); border: 1px solid var(--line); border-radius: 100px; padding: 6px 14px; white-space: nowrap; }
+
+  /* ---------- Work grid ---------- */
+  .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(18px, 2.5vw, 32px); }
+  .work-card { cursor: pointer; }
+  .work-thumb {
+    aspect-ratio: 4/3; background: var(--tertiary); border-radius: 4px; overflow: hidden;
+    position: relative; display: grid; place-items: center; transition: transform .4s ease;
+  }
+  .work-card:hover .work-thumb { transform: translateY(-4px); }
+  .work-thumb .ph { font-family: var(--display); color: var(--secondary); font-size: 14px; letter-spacing: 0.03em; }
+  .work-thumb .arrow {
+    position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+    background: var(--white); border-radius: 50%; display: grid; place-items: center;
+    opacity: 0; transform: scale(0.8); transition: all .3s ease;
+  }
+  .work-card:hover .work-thumb .arrow { opacity: 1; transform: scale(1); }
+  .work-info { display: flex; justify-content: space-between; align-items: baseline; margin-top: 18px; }
+  .work-name { font-family: var(--display); font-size: 18px; font-weight: 500; letter-spacing: -0.02em; }
+  .work-cat { font-size: 13px; color: var(--secondary); }
+
+  /* ---------- CTA banner ---------- */
+  .cta-band { background: var(--primary); color: var(--white); border-radius: 6px; padding: clamp(40px, 6vw, 72px); text-align: center; }
+  .cta-band h3 { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 4vw, 44px); letter-spacing: -0.03em; line-height: 1.05; max-width: 600px; margin: 0 auto; }
+  .cta-band p { color: rgba(255,255,255,0.6); margin-top: 18px; max-width: 460px; margin-left: auto; margin-right: auto; font-size: 15px; }
+  .cta-btn {
+    font-family: var(--body); margin-top: 30px; background: var(--white); color: var(--primary);
+    border: none; border-radius: 100px; padding: 14px 30px; font-size: 14px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; transition: transform .2s ease;
+  }
+  .cta-btn:hover { transform: translateY(-2px); }
+
+  /* ---------- Footer ---------- */
+  .footer { background: var(--primary); color: var(--white); padding: clamp(40px, 6vw, 70px) 0; margin-top: 0; }
+  .footer-grid { display: flex; justify-content: space-between; align-items: center; gap: 30px; flex-wrap: wrap; }
+  .footer-links { display: flex; gap: 8px; }
+  .footer-links button { font-family: var(--body); font-size: 14px; color: rgba(255,255,255,0.6); background: none; border: none; cursor: pointer; padding: 7px 12px; transition: color .2s; }
+  .footer-links button:hover { color: var(--white); }
+  .footer-email { font-family: var(--display); font-size: clamp(20px, 3vw, 32px); font-weight: 400; letter-spacing: -0.02em; text-decoration: none; color: var(--white); }
+
+  /* ---------- AI Assistant ---------- */
+  .ai-fab {
+    position: fixed; bottom: 26px; right: 26px; z-index: 100;
+    background: var(--primary); color: var(--white); border: none; cursor: pointer;
+    border-radius: 100px; padding: 15px 22px; display: flex; align-items: center; gap: 11px;
+    font-family: var(--body); font-size: 14px; box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+    transition: transform .25s ease;
+  }
+  .ai-fab:hover { transform: translateY(-2px); }
+  .ai-fab .dot { width: 8px; height: 8px; background: #6EE787; border-radius: 50%; box-shadow: 0 0 0 0 rgba(110,231,135,0.6); animation: pulse 2s infinite; }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(110,231,135,0.5); } 70% { box-shadow: 0 0 0 8px rgba(110,231,135,0); } 100% { box-shadow: 0 0 0 0 rgba(110,231,135,0); } }
+
+  .ai-panel {
+    position: fixed; bottom: 26px; right: 26px; z-index: 101;
+    width: min(400px, calc(100vw - 36px)); height: min(580px, calc(100vh - 52px));
+    background: var(--white); border-radius: 16px; box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+    display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line);
+    animation: panelIn .3s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes panelIn { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: none; } }
+  .ai-head { padding: 18px 20px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
+  .ai-head .t { display: flex; align-items: center; gap: 11px; }
+  .ai-head .avatar { width: 34px; height: 34px; background: var(--primary); color: var(--white); border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 15px; font-weight: 600; }
+  .ai-head .name { font-family: var(--display); font-size: 15px; font-weight: 500; letter-spacing: -0.01em; }
+  .ai-head .status { font-size: 12px; color: var(--secondary); display: flex; align-items: center; gap: 5px; }
+  .ai-head .status .d { width: 6px; height: 6px; background: #34C759; border-radius: 50%; }
+  .ai-close { background: none; border: none; cursor: pointer; color: var(--secondary); font-size: 20px; line-height: 1; padding: 4px; }
+  .ai-body { flex: 1; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  .msg { max-width: 84%; font-size: 14px; line-height: 1.5; padding: 11px 15px; border-radius: 14px; }
+  .msg.bot { background: var(--tertiary); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg.user { background: var(--primary); color: var(--white); align-self: flex-end; border-bottom-right-radius: 4px; }
+  .suggest { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+  .suggest button { font-family: var(--body); font-size: 12.5px; color: var(--primary); background: var(--white); border: 1px solid var(--line); border-radius: 100px; padding: 8px 14px; cursor: pointer; transition: all .2s; }
+  .suggest button:hover { background: var(--tertiary); }
+  .ai-foot { padding: 14px 16px; border-top: 1px solid var(--line); display: flex; gap: 10px; align-items: center; }
+  .ai-foot input { flex: 1; font-family: var(--body); font-size: 14px; border: 1px solid var(--line); border-radius: 100px; padding: 11px 16px; outline: none; transition: border-color .2s; }
+  .ai-foot input:focus { border-color: var(--primary); }
+  .ai-send { background: var(--primary); color: var(--white); border: none; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; display: grid; place-items: center; flex-shrink: 0; transition: opacity .2s; }
+  .ai-send:disabled { opacity: 0.4; cursor: default; }
+  .typing { display: flex; gap: 4px; padding: 14px 16px; }
+  .typing span { width: 7px; height: 7px; background: var(--secondary); border-radius: 50%; animation: blink 1.4s infinite both; }
+  .typing span:nth-child(2) { animation-delay: .2s; }
+  .typing span:nth-child(3) { animation-delay: .4s; }
+  @keyframes blink { 0%, 80%, 100% { opacity: 0.3; } 40% { opacity: 1; } }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-side { display: none; }
+    .hero-portrait { order: -1; max-height: 360px; }
+    .section-head { grid-template-columns: 1fr; }
+    .section-lead { justify-self: start; }
+    .meta-grid { grid-template-columns: repeat(2, 1fr); }
+    .exp-row { grid-template-columns: 1fr; gap: 12px; }
+    .work-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script type="text/babel">
+const { useState, useRef, useEffect } = React;
+
+// ============ EDIT YOUR CONTENT HERE ============
+const DATA = {
+  name: "Laura Anthony",
+  brandInitial: "L",
+  role: "Product Designer",       // shown vertically in hero
+  tagline: "It's Laura — turning complex problems into elegant systems",
+  year: "2026",
+  email: "hello@lanthony.app",
+  stats: [
+    { num: "200", sup: "+", label: "Projects completed" },
+    { num: "50", sup: "+", label: "Clients served" },
+  ],
+  about: {
+    lede: "I'm a [your title] who specializes in [your focus]. My approach blends [strength one] with [strength two] to deliver work that doesn't just look right — it works.",
+    meta: [
+      { k: "Experience", v: "9", sub: "+ years" },
+      { k: "Based in", v: "Atlanta", sub: "GA" },
+      { k: "Focus", v: "Education", sub: "" },
+      { k: "Status", v: "Open", sub: "to roles" },
+    ],
+  },
+  experience: [
+    { role: "Senior Role, Company", date: "2024 — Present", desc: "Short description of what you owned and shipped here.", tags: ["Tag", "Tag"] },
+    { role: "Previous Role, Company", date: "2020 — 2024", desc: "Short description of what you owned and shipped here.", tags: ["Tag", "Tag"] },
+    { role: "Earlier Role, Company", date: "2018 — 2020", desc: "Short description of what you owned and shipped here.", tags: ["Tag"] },
+    { role: "First Role, Company", date: "2016 — 2018", desc: "Short description of what you owned and shipped here.", tags: ["Tag"] },
+  ],
+  work: [
+    { name: "Project One", cat: "Category", desc: "One line about the project." },
+    { name: "Project Two", cat: "Category", desc: "One line about the project." },
+    { name: "Project Three", cat: "Category", desc: "One line about the project." },
+    { name: "Project Four", cat: "Category", desc: "One line about the project." },
+  ],
+};
+// AI assistant knowledge — edit freely. This is what the bot "knows" about you.
+const AI_CONTEXT = `You are a friendly, concise AI assistant embedded on ${DATA.name}'s personal portfolio website. You answer questions from recruiters and hiring managers about ${DATA.name}.
+
+ABOUT:
+- Name: ${DATA.name}
+- Title/role: [EDIT: your current title]
+- Based in: Atlanta, Georgia
+- Experience: 9+ years in [EDIT: your field]
+- Specialties: [EDIT: list your top skills/specialties]
+
+EXPERIENCE:
+[EDIT: paste a few bullets of your work history here]
+
+SKILLS & PROJECTS:
+[EDIT: list your key skills and notable projects]
+
+AVAILABILITY & CONTACT:
+- Currently open to new opportunities: [EDIT: yes/no + what kind]
+- Best way to reach: ${DATA.email}
+
+RULES:
+- Keep answers short (1-3 sentences), warm, and professional.
+- Only answer based on the info above. If you don't know something, say you're not sure and suggest they email ${DATA.name} directly at ${DATA.email}.
+- Never invent facts, dates, or employers.
+- If asked something off-topic, gently steer back to ${DATA.name}'s background.`;
+// ================================================
+
+function Nav({ page, go }) {
+  const items = [["home","Home"],["about","About Me"],["work","Work"]];
+  return (
+    <nav className="nav">
+      <div className="brand" onClick={() => go("home")}>
+        <span className="mark">✦</span>{DATA.name}
+      </div>
+      <div className="nav-links">
+        {items.map(([k,l]) => (
+          <button key={k} className={page===k?"active":""} onClick={() => go(k)}>{l}</button>
+        ))}
+      </div>
+      <button className="nav-cta" onClick={() => go("work")}>Get in touch <span>↗</span></button>
+    </nav>
+  );
+}
+
+function Hero({ go }) {
+  return (
+    <section className="hero">
+      <div className="wrap">
+        <div className="hero-grid">
+          <div className="hero-side">{DATA.role}</div>
+          <div className="hero-left">
+            <div className="hero-stats">
+              {DATA.stats.map((s,i) => (
+                <div className="stat" key={i}>
+                  <div className="num"><sup>{s.sup}</sup>{s.num}</div>
+                  <div className="lbl">{s.label}</div>
+                </div>
+              ))}
+            </div>
+            <div className="hello">Hello</div>
+            <div className="hero-tag">{DATA.tagline}</div>
+            <div className="hero-foot">
+              <span className="year">{DATA.year}</span>
+              <span className="scroll-hint">Scroll down ↓</span>
+            </div>
+          </div>
+          <div className="hero-portrait">
+            <div className="ph">YOUR<br/>PHOTO<br/>HERE</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomeExtras({ go }) {
+  return (
+    <React.Fragment>
+      <section className="section tint">
+        <div className="wrap">
+          <div className="eyebrow" style={{marginBottom:28}}>About</div>
+          <p className="lede">
+            {DATA.about.lede.split('[').map((part, i) => {
+              if (i === 0) return part;
+              const [ph, rest] = part.split(']');
+              return <React.Fragment key={i}><span className="dim">[{ph}]</span>{rest}</React.Fragment>;
+            })}
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="section-title">Selected<br/>Work</h2>
+            <p className="section-lead">A few projects I'm proud of. Swap these placeholders for your real case studies.</p>
+          </div>
+          <div className="work-grid">
+            {DATA.work.slice(0,2).map((w,i) => <WorkCard key={i} w={w} />)}
+          </div>
+          <div style={{marginTop:40}}>
+            <button className="nav-cta" onClick={() => go("work")}>View all work <span>↗</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="cta-band">
+            <h3>Got a role in mind? Let's talk.</h3>
+            <p>I'm always open to conversations about interesting opportunities and teams doing meaningful work.</p>
+            <button className="cta-btn" onClick={() => go("work")}>Get in touch <span>↗</span></button>
+          </div>
+        </div>
+      </section>
+    </React.Fragment>
+  );
+}
+
+function WorkCard({ w }) {
+  return (
+    <div className="work-card">
+      <div className="work-thumb">
+        <div className="ph">{w.name}</div>
+        <div className="arrow">↗</div>
+      </div>
+      <div className="work-info">
+        <span className="work-name">{w.name}</span>
+        <span className="work-cat">{w.cat}</span>
+      </div>
+    </div>
+  );
+}
+
+function About() {
+  return (
+    <div className="page">
+      <section className="section">
+        <div className="wrap">
+          <div className="eyebrow" style={{marginBottom:32}}>About Me</div>
+          <p className="lede">
+            {DATA.about.lede.split('[').map((part, i) => {
+              if (i === 0) return part;
+              const [ph, rest] = part.split(']');
+              return <React.Fragment key={i}><span className="dim">[{ph}]</span>{rest}</React.Fragment>;
+            })}
+          </p>
+          <div className="meta-grid">
+            {DATA.about.meta.map((m,i) => (
+              <div className="meta-cell" key={i}>
+                <div className="k">{m.k}</div>
+                <div className="v">{m.v}{m.sub && <small> {m.sub}</small>}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section tint">
+        <div className="wrap">
+          <div className="section-head">
+            <h2 className="section-title">Explore My<br/>Journey</h2>
+            <p className="section-lead">Over the years I've had the chance to work across a range of teams and projects. Replace these rows with your real history.</p>
+          </div>
+          {DATA.experience.map((e,i) => (
+            <div className="exp-row" key={i}>
+              <div>
+                <div className="exp-role">{e.role}</div>
+                <div className="exp-date">{e.date}</div>
+              </div>
+              <div className="exp-desc">{e.desc}</div>
+              <div className="tags">{e.tags.map((t,j) => <span className="tag" key={j}>{t}</span>)}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function Work() {
+  return (
+    <div className="page">
+      <section className="section">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <div className="eyebrow" style={{marginBottom:24}}>Portfolio</div>
+              <h2 className="section-title">Latest Works</h2>
+            </div>
+            <p className="section-lead">Selected projects spanning design, strategy, and deployment. Replace with your own case studies and images.</p>
+          </div>
+          <div className="work-grid">
+            {DATA.work.map((w,i) => <WorkCard key={i} w={w} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="section tint">
+        <div className="wrap">
+          <div className="cta-band">
+            <h3>Let's build something together.</h3>
+            <p>Have a role or project you think I'd be a fit for? I'd love to hear about it.</p>
+            <a href={`mailto:${DATA.email}`} style={{textDecoration:'none'}}><button className="cta-btn">{DATA.email} <span>↗</span></button></a>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function Footer({ go }) {
+  const items = [["home","Home"],["about","About"],["work","Work"]];
+  return (
+    <footer className="footer">
+      <div className="wrap">
+        <div className="footer-grid">
+          <div className="footer-links">
+            {items.map(([k,l]) => <button key={k} onClick={() => go(k)}>{l}</button>)}
+          </div>
+          <a href={`mailto:${DATA.email}`} className="footer-email">{DATA.email}</a>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+function Assistant() {
+  const [open, setOpen] = useState(false);
+  const [msgs, setMsgs] = useState([
+    { role: "bot", text: `Hi! I'm ${DATA.name}'s AI assistant. Ask me about her background, skills, or availability.` }
+  ]);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const bodyRef = useRef(null);
+  const suggestions = ["What's her background?", "What are her key skills?", "Is she open to new roles?"];
+
+  useEffect(() => {
+    if (bodyRef.current) bodyRef.current.scrollTop = bodyRef.current.scrollHeight;
+  }, [msgs, loading]);
+
+  async function send(text) {
+    const q = (text || input).trim();
+    if (!q || loading) return;
+    setInput("");
+    const next = [...msgs, { role: "user", text: q }];
+    setMsgs(next);
+    setLoading(true);
+    try {
+      const history = next.filter(m => m.role !== "bot" || m !== next[0])
+        .map(m => ({ role: m.role === "user" ? "user" : "assistant", content: m.text }));
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1000,
+          system: AI_CONTEXT,
+          messages: history,
+        }),
+      });
+      const data = await res.json();
+      const reply = data.content.filter(c => c.type === "text").map(c => c.text).join("\n").trim();
+      setMsgs(m => [...m, { role: "bot", text: reply || "Sorry, I didn't catch that. Could you rephrase?" }]);
+    } catch (e) {
+      setMsgs(m => [...m, { role: "bot", text: `Something went wrong on my end. You can always reach ${DATA.name} directly at ${DATA.email}.` }]);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (!open) {
+    return (
+      <button className="ai-fab" onClick={() => setOpen(true)}>
+        <span className="dot"></span> Ask my AI assistant
+      </button>
+    );
+  }
+
+  return (
+    <div className="ai-panel">
+      <div className="ai-head">
+        <div className="t">
+          <div className="avatar">{DATA.brandInitial}</div>
+          <div>
+            <div className="name">AI Assistant</div>
+            <div className="status"><span className="d"></span> Online</div>
+          </div>
+        </div>
+        <button className="ai-close" onClick={() => setOpen(false)}>×</button>
+      </div>
+      <div className="ai-body" ref={bodyRef}>
+        {msgs.map((m,i) => <div key={i} className={`msg ${m.role}`}>{m.text}</div>)}
+        {loading && <div className="msg bot" style={{padding:0}}><div className="typing"><span></span><span></span><span></span></div></div>}
+        {msgs.length === 1 && !loading && (
+          <div className="suggest">
+            {suggestions.map((s,i) => <button key={i} onClick={() => send(s)}>{s}</button>)}
+          </div>
+        )}
+      </div>
+      <div className="ai-foot">
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === "Enter" && send()}
+          placeholder="Ask a question…"
+        />
+        <button className="ai-send" disabled={loading || !input.trim()} onClick={() => send()}>↑</button>
+      </div>
+    </div>
+  );
+}
+
+function App() {
+  const [page, setPage] = useState("home");
+  const go = (p) => { setPage(p); window.scrollTo({ top: 0, behavior: "smooth" }); };
+  return (
+    <React.Fragment>
+      <Nav page={page} go={go} />
+      {page === "home" && <div className="page"><Hero go={go} /><HomeExtras go={go} /></div>}
+      {page === "about" && <About />}
+      {page === "work" && <Work />}
+      <Footer go={go} />
+      <Assistant />
+    </React.Fragment>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(<App />);
+</script>
+
+</body>
+</html>

@@ -90,12 +90,28 @@
     text-transform: uppercase; align-self: stretch; padding-bottom: 4px;
   }
   .hero-left { display: flex; flex-direction: column; }
+  .hero-orient {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    margin-bottom: clamp(30px, 6vw, 64px);
+    font-size: clamp(13px, 1.4vw, 15px); color: var(--secondary);
+    letter-spacing: -0.01em;
+  }
+  .hero-orient .dot { color: var(--line); }
+  .hero-orient .accent {
+    color: var(--primary); font-weight: 500;
+    display: inline-flex; align-items: center; gap: 7px;
+  }
+  .hero-orient .accent::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: #34C759; display: inline-block;
+  }
   .hero-stats { display: flex; gap: 44px; margin-bottom: clamp(30px, 6vw, 64px); }
   .stat .num {
     font-family: var(--display); font-size: clamp(28px, 4vw, 40px); font-weight: 500;
     letter-spacing: -0.03em; line-height: 1;
   }
   .stat .num sup { font-size: 0.5em; vertical-align: super; color: var(--secondary); font-weight: 400; }
+  .stat .num .suffix { font-size: 0.6em; color: var(--secondary); font-weight: 400; }
   .stat .lbl { font-size: 12.5px; color: var(--secondary); margin-top: 8px; }
   .hello {
     font-family: var(--display); font-weight: 400;
@@ -103,11 +119,22 @@
     letter-spacing: -0.05em;
   }
   .hero-tag {
-    font-size: clamp(14px, 1.6vw, 17px); color: var(--secondary);
-    margin-top: 22px; display: flex; align-items: center; gap: 10px;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(18px, 2.2vw, 26px); color: var(--primary);
+    letter-spacing: -0.02em; line-height: 1.3;
+    margin-top: 26px; max-width: 520px;
+    display: flex; align-items: flex-start; gap: 12px;
   }
-  .hero-tag::before { content: '—'; color: var(--primary); }
-  .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 40px; }
+  .hero-tag::before { content: '—'; color: var(--secondary); flex-shrink: 0; }
+  .hero-actions { margin-top: 30px; }
+  .hero-btn {
+    font-family: var(--body); font-size: 14px; color: var(--white);
+    background: var(--primary); border: none; border-radius: 100px;
+    padding: 14px 28px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .hero-btn:hover { transform: translateY(-2px); opacity: 0.9; }
+  .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 44px; }
   .scroll-hint { font-size: 13px; color: var(--secondary); display: flex; align-items: center; gap: 8px; }
   .year { font-size: 13px; color: var(--secondary); }
   .hero-portrait {
@@ -270,12 +297,17 @@ const DATA = {
   name: "Laura Anthony",
   brandInitial: "L",
   role: "AI · Education · Apple",       // shown vertically in hero
-  tagline: "It's Laura — I make advanced AI simple, so educators can focus on teaching",
+  tagline: "I make advanced AI simple, so educators can focus on teaching, not technology.",
   year: "2026",
   email: "lbanthony91@gmail.com",
+  orient: [
+    { text: "Consulting Engineer for AI in Education" },
+    { text: "Apple" },
+    { text: "Open to new roles", accent: true },
+  ],
   stats: [
     { num: "10", sup: "", label: "Years in education tech" },
-    { num: "1,000", sup: "+", label: "Institutions served" },
+    { num: "60", sup: "", suffix: "%", label: "Faster deployments" },
   ],
   about: {
     lede: "I'm an education technology leader working at the intersection of AI and the classroom. For 10+ years I've turned complex, fast-moving technology into adoption programs, enablement, and guidance that scale — translating what teachers, IT leaders, and districts actually need into experiences that work in the real world.",
@@ -328,16 +360,19 @@ function Hero({ go }) {
         <div className="hero-grid">
           <div className="hero-side">{DATA.role}</div>
           <div className="hero-left">
-            <div className="hero-stats">
-              {DATA.stats.map((s,i) => (
-                <div className="stat" key={i}>
-                  <div className="num"><sup>{s.sup}</sup>{s.num}</div>
-                  <div className="lbl">{s.label}</div>
-                </div>
+            <div className="hero-orient">
+              {DATA.orient.map((part, i) => (
+                <React.Fragment key={i}>
+                  {i > 0 && <span className="dot">·</span>}
+                  <span className={part.accent ? "accent" : ""}>{part.text}</span>
+                </React.Fragment>
               ))}
             </div>
             <div className="hello">Hello</div>
             <div className="hero-tag">{DATA.tagline}</div>
+            <div className="hero-actions">
+              <button className="hero-btn" onClick={() => go("work")}>Get in touch <span>↗</span></button>
+            </div>
             <div className="hero-foot">
               <span className="year">{DATA.year}</span>
               <span className="scroll-hint">Scroll down ↓</span>

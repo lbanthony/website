@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Laura Anthony — Portfolio</title>
+<title>Laura Anthony — AI Education Products</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23222222'/%3E%3Ctext x='50' y='50' font-family='Georgia, serif' font-size='58' font-weight='600' fill='%23ffffff' text-anchor='middle' dominant-baseline='central'%3EL%3C/text%3E%3C/svg%3E" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
@@ -171,6 +172,13 @@
   }
   .lede .dim { color: var(--secondary); }
   .meta-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); margin-top: clamp(50px, 7vw, 90px); border: 1px solid var(--line); }
+  .pov { max-width: 820px; }
+  .pov-text {
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(20px, 2.6vw, 30px); line-height: 1.4;
+    letter-spacing: -0.02em; color: var(--primary);
+  }
+  .pov-text em { font-style: italic; color: var(--secondary); }
   .meta-cell { background: var(--white); padding: 28px 24px; }
   .meta-cell .k { font-size: 12px; color: var(--secondary); text-transform: uppercase; letter-spacing: 0.1em; }
   .meta-cell .v { font-family: var(--display); font-size: 26px; font-weight: 500; letter-spacing: -0.02em; margin-top: 14px; }
@@ -325,10 +333,10 @@ const DATA = {
     { role: "Director of Technology — St. Paul's Schools", date: "2014 — 2017", desc: "Led a 4-person team supporting 1,000+ users; pioneered the school's first 1:1 iPad program, launched the SAMR Model Ed Tech Board, and established the first student-run Genius Bar.", tags: ["Leadership", "K-12"] },
   ],
   work: [
-    { name: "Education AI Mac App", cat: "Personal Build · Swift", desc: "Designed and built a native macOS/iPadOS app that runs AI locally for classroom use — privacy-first, no student data leaving the device. Swift/SwiftUI, built solo from idea to working prototype." },
+    { name: "On-Device AI for Classrooms", cat: "Product · Apple", desc: "Prototype privacy-first AI tools for education that run entirely on-device, so student data never leaves the classroom. Spans local language-model inference on Apple Silicon, retrieval over a teacher's own documents, accessibility-first interaction, and native app development. (Specifics confidential.)" },
     { name: "AI Recruiter Assistant", cat: "Personal Build · This Site", desc: "Built the Claude-powered chat assistant on this site — a serverless function on Cloudflare that answers recruiter questions about my background. Designed the prompt, guardrails, and architecture end to end." },
     { name: "Life of Mac Analytics", cat: "Data Product · Apple", desc: "Built an LLM-powered insights tool over 5,000+ data points that surfaced adoption blockers and reliability patterns — lifting adoption 25% and field-to-engineering signal 40%." },
-    { name: "Education AI Products (0→1)", cat: "Product · Apple", desc: "Prototype and drive education-native AI product concepts from idea to working prototype — defining educator-centered workflows and privacy-first architecture. (Specifics confidential.)" },
+    { name: "Education AI Products (0→1)", cat: "Product · Apple", desc: "Drive education-native AI product concepts from idea to working prototype — defining educator-centered workflows and privacy-first architecture. (Specifics confidential.)" },
     { name: "Deployment Success Engineering", cat: "Program · Apple", desc: "Designed and scaled Apple's education deployment function from concept to a 10-engineer national team — 60% faster rollouts, 99% satisfaction, 1,000+ institutions." },
     { name: "Apple School Manager: Identity", cat: "Platform · Apple", desc: "Partnered with engineering on OneRoster and ASM API Keys, translating district SIS and rostering needs into scalable identity and access workflows." },
   ],
@@ -476,6 +484,17 @@ function About() {
                 <div className="v">{m.v}{m.sub && <small> {m.sub}</small>}</div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="wrap">
+          <div className="pov">
+            <div className="eyebrow" style={{marginBottom:28}}>Point of View</div>
+            <p className="pov-text">
+              I believe the most important AI in a classroom is the AI you can <em>trust</em> — which means it should run where the students are, not in someone else's cloud. On-device inference isn't a constraint to work around; it's the whole point. Keeping student data local turns privacy from a compliance checkbox into the default, and it forces a kind of engineering discipline that makes the product better: leaner models, sharper UX, accessibility built in rather than bolted on. My work lives at that intersection — proving that teachers can have a genuinely capable AI partner without anything ever leaving the room.
+            </p>
           </div>
         </div>
       </section>

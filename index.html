@@ -296,12 +296,12 @@ const { useState, useRef, useEffect } = React;
 const DATA = {
   name: "Laura Anthony",
   brandInitial: "L",
-  role: "AI · Education · Apple",       // shown vertically in hero
+  role: "Product · AI · Education",       // shown vertically in hero
   tagline: "I make advanced AI simple, so educators can focus on teaching, not technology.",
   year: "2026",
   email: "lbanthony91@gmail.com",
   orient: [
-    { text: "Consulting Engineer for AI in Education" },
+    { text: "Consulting Engineer, AI Education Products" },
     { text: "Apple" },
     { text: "Open to new roles", accent: true },
   ],
@@ -310,7 +310,7 @@ const DATA = {
     { num: "60", sup: "", suffix: "%", label: "Faster deployments" },
   ],
   about: {
-    lede: "I'm an education technology leader working at the intersection of AI and the classroom. For 10+ years I've turned complex, fast-moving technology into adoption programs, enablement, and guidance that scale — translating what teachers, IT leaders, and districts actually need into experiences that work in the real world.",
+    lede: "I'm a builder working at the intersection of AI and the classroom. I take education-native AI products from idea to working prototype — defining the user workflows, privacy-first architecture, and technical decisions behind them. For 10+ years I've turned hard problems into products and programs that teachers, IT leaders, and districts actually use.",
     meta: [
       { k: "Experience", v: "10", sub: "+ years" },
       { k: "Based in", v: "Atlanta", sub: "GA" },
@@ -319,15 +319,18 @@ const DATA = {
     ],
   },
   experience: [
-    { role: "Consulting Engineer for AI in Education — Apple", date: "May 2019 — Present", desc: "Lead education field engineering and AI enablement: built Apple's Deployment Success Engineering function into a 10-engineer national program, cut deployment timelines 60% across 1,000+ institutions at 99% satisfaction, and developed worldwide AI adoption guidance for K-12 and Higher Ed.", tags: ["AI Adoption", "Enablement", "Product Feedback"] },
+    { role: "Consulting Engineer, AI Education Products — Apple", date: "May 2019 — Present", desc: "Operate as a 0→1 builder: prototype and drive education-native AI product concepts from idea to working prototype, defining educator-centered workflows and privacy-first architecture. Built and scaled Apple's Deployment Success Engineering function into a 10-engineer national program (60% faster deployments, 99% satisfaction across 1,000+ institutions) and developed worldwide AI adoption guidance for K-12 and Higher Ed.", tags: ["0→1 Product", "AI", "Enablement"] },
     { role: "Co-Founder & Product Lead — LaunchFrame", date: "Dec 2014 — May 2019", desc: "Founded and scaled a boutique IT consultancy to 150+ clients across education, SMB, and legal, achieving 45% YoY growth and 85% retention through high-touch onboarding, a hybrid support model, and a talent pathway that moved specialists into engineering roles.", tags: ["Product", "Customer Success"] },
     { role: "Engineering Manager, Ed Tech — The Westminster Schools", date: "Jan 2018 — May 2019", desc: "Led a 14-person team supporting 3,000+ users; pioneered an open-source NanoMDM deployment, cut support tickets 35% via self-service workflows, and authored technology and student-privacy policy with legal and board review.", tags: ["Leadership", "K-12"] },
+    { role: "Director of Technology — St. Paul's Schools", date: "2014 — 2017", desc: "Led a 4-person team supporting 1,000+ users; pioneered the school's first 1:1 iPad program, launched the SAMR Model Ed Tech Board, and established the first student-run Genius Bar.", tags: ["Leadership", "K-12"] },
   ],
   work: [
-    { name: "Deployment Success Engineering", cat: "National Program", desc: "Built Apple's education deployment function from concept to a 10-engineer national team — 60% faster rollouts, 99% satisfaction, 1,000+ institutions." },
-    { name: "AI Adoption for Education", cat: "AI Strategy", desc: "Worldwide K-12 and Higher Ed AI enablement: privacy-centered architecture, Core ML, and classroom workflows turned into field-ready guidance." },
-    { name: "Life of Mac Analytics", cat: "Data & Insights", desc: "Analyzed 5,000+ data points and built an LLM-powered insights tool — lifting adoption 25% and field-to-engineering communication 40%." },
-    { name: "Apple School Manager: Identity", cat: "Platform", desc: "Partnered with engineering on OneRoster and ASM API Keys, translating district SIS and rostering needs into scalable identity and access workflows." },
+    { name: "Education AI Mac App", cat: "Personal Build · Swift", desc: "Designed and built a native macOS/iPadOS app that runs AI locally for classroom use — privacy-first, no student data leaving the device. Swift/SwiftUI, built solo from idea to working prototype." },
+    { name: "AI Recruiter Assistant", cat: "Personal Build · This Site", desc: "Built the Claude-powered chat assistant on this site — a serverless function on Cloudflare that answers recruiter questions about my background. Designed the prompt, guardrails, and architecture end to end." },
+    { name: "Life of Mac Analytics", cat: "Data Product · Apple", desc: "Built an LLM-powered insights tool over 5,000+ data points that surfaced adoption blockers and reliability patterns — lifting adoption 25% and field-to-engineering signal 40%." },
+    { name: "Education AI Products (0→1)", cat: "Product · Apple", desc: "Prototype and drive education-native AI product concepts from idea to working prototype — defining educator-centered workflows and privacy-first architecture. (Specifics confidential.)" },
+    { name: "Deployment Success Engineering", cat: "Program · Apple", desc: "Designed and scaled Apple's education deployment function from concept to a 10-engineer national team — 60% faster rollouts, 99% satisfaction, 1,000+ institutions." },
+    { name: "Apple School Manager: Identity", cat: "Platform · Apple", desc: "Partnered with engineering on OneRoster and ASM API Keys, translating district SIS and rostering needs into scalable identity and access workflows." },
   ],
 };
 // NOTE: The AI assistant's knowledge now lives in the backend file
@@ -407,7 +410,7 @@ function HomeExtras({ go }) {
         <div className="wrap">
           <div className="section-head">
             <h2 className="section-title">Selected<br/>Work</h2>
-            <p className="section-lead">A few initiatives I'm proud of — from national programs to AI adoption in the classroom.</p>
+            <p className="section-lead">Things I've built — from personal AI apps to products and programs shipped at scale.</p>
           </div>
           <div className="work-grid">
             {DATA.work.slice(0,2).map((w,i) => <WorkCard key={i} w={w} />)}
@@ -481,7 +484,7 @@ function About() {
         <div className="wrap">
           <div className="section-head">
             <h2 className="section-title">Explore My<br/>Journey</h2>
-            <p className="section-lead">A decade of work across field engineering, product, and education — translating complex technology into adoption that scales.</p>
+            <p className="section-lead">A decade of building — across product, engineering, and education — turning hard problems into things people actually use.</p>
           </div>
           {DATA.experience.map((e,i) => (
             <div className="exp-row" key={i}>
@@ -509,7 +512,7 @@ function Work() {
               <div className="eyebrow" style={{marginBottom:24}}>Portfolio</div>
               <h2 className="section-title">Latest Works</h2>
             </div>
-            <p className="section-lead">Selected initiatives spanning AI adoption, national program-building, identity platforms, and data-driven insight in education.</p>
+            <p className="section-lead">Products and programs I've built — personal AI apps, data products, and 0→1 work shipped at scale.</p>
           </div>
           <div className="work-grid">
             {DATA.work.map((w,i) => <WorkCard key={i} w={w} />)}

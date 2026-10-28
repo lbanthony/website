@@ -58,7 +58,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
       setAnswer({ answer: data.reply, source: "ai" });
     } catch {
       setError(
-        "The AI assistant couldn’t connect. Here’s an answer from my published profile instead.",
+        "AI couldn’t connect. Here’s an answer from my profile instead.",
       );
       setAnswer({ ...answerFromProfile(text), source: "profile" });
     } finally {
@@ -75,7 +75,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
     >
       <div className="flex items-center gap-2.5 text-sm font-medium">
         <Leaf size={16} aria-hidden="true" />
-        <h2 id="guide-title">Make yourself at home. Ask a question.</h2>
+        <h2 id="guide-title">Ask about my work.</h2>
       </div>
       <form
         className="question-form"
@@ -173,7 +173,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
             <p className="answer-source">
               <BookOpen size={12} aria-hidden="true" />
               {answer.source === "profile"
-                ? "From my published profile · matched in your browser"
+                ? "From my profile · matched in your browser"
                 : "AI-generated with Anthropic · may make mistakes"}
             </p>
           </div>
@@ -182,15 +182,13 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
       <details className="guide-privacy">
         <summary>
           <Check size={12} aria-hidden="true" />
-          No sign-in. No saved questions.
+          No saved questions.
           <span className="privacy-more">How it works</span>
         </summary>
         <div>
           <p>
-            The default guide matches your question to my published profile in
-            your browser. It doesn’t send your question to a server or a model,
-            and it doesn’t store it. It’s a small guide, so it won’t know
-            everything.
+            The default guide matches questions to my profile in your browser.
+            It doesn’t send or save them.
           </p>
           {aiAvailable && (
             <label className="cloud-consent">
@@ -205,9 +203,8 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
                 }}
               />
               <span>
-                Use the AI assistant for my next question. I understand that my
-                question will be sent to Anthropic through this site. Please
-                don’t include sensitive information.
+                Use AI for my next question. This sends it to Anthropic through
+                this site. Don’t include sensitive information.
               </span>
             </label>
           )}

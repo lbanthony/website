@@ -46,12 +46,7 @@ export default function Home() {
       <header className="site-header wrap">
         <a href="#home" className="brand" aria-label="Laura Anthony, home">
           <CourtyardMark />
-          <span>
-            Laura Anthony
-            <span className="brand-caption">
-              Engineer. Builder. Curious human.
-            </span>
-          </span>
+          <span>Laura Anthony</span>
         </a>
         <nav aria-label="Main navigation">
           <a href="#work">My work</a>
@@ -66,10 +61,6 @@ export default function Home() {
       <main id="main">
         <section id="home" className="hero wrap" aria-labelledby="welcome">
           <div className="hero-content">
-            <p className="eyebrow">
-              <span className="little-dot" />A little space for thoughtful
-              technology
-            </p>
             <h1 id="welcome">
               Hi, I’m Laura.
               <br />I build with
@@ -77,15 +68,11 @@ export default function Home() {
               <span>people in mind.</span>
             </h1>
             <p className="hero-intro">
-              I’m an engineer, a builder, and an endlessly curious human. I turn
-              emerging technology into things people can actually use.
-            </p>
-            <p className="hero-focus">
-              These days, that means private AI, native apps, and a lot of
-              learning by doing.
+              I’m an engineer building private AI systems and native apps on
+              Apple platforms.
             </p>
             <a href="#work" className="text-link hero-link">
-              Come see what I’m working on
+              Explore my work
               <ArrowDown size={16} aria-hidden="true" />
             </a>
             <ProfileGuide
@@ -105,11 +92,10 @@ export default function Home() {
               />
               <span className="photo-note">
                 <DoorOpen size={17} aria-hidden="true" />
-                The door’s open. Come on in.
+                Come on in.
               </span>
             </div>
             <figcaption>
-              A quieter corner of the internet.
               <span className="photo-credit">
                 Photo by{" "}
                 <a
@@ -124,8 +110,7 @@ export default function Home() {
           </figure>
         </section>
 
-        <div className="welcome-divider wrap">
-          <span>Thoughtful systems. Real people. Room to grow.</span>
+        <div className="welcome-divider wrap" aria-hidden="true">
           <Sprout size={22} strokeWidth={1.4} aria-hidden="true" />
         </div>
 
@@ -136,17 +121,8 @@ export default function Home() {
         >
           <div className="section-heading">
             <div>
-              <p className="eyebrow">Selected projects & engineering work</p>
-              <h2 id="work-title">
-                Built with care.
-                <br />
-                <span className="muted-heading">Made to be useful.</span>
-              </h2>
+              <h2 id="work-title">Selected work</h2>
             </div>
-            <p>
-              Native applications, private AI systems, and engineering programs.
-              The work connects technical depth with the people who use it.
-            </p>
           </div>
 
           <article
@@ -160,13 +136,8 @@ export default function Home() {
                 {featured.status}
               </p>
               <h3 id="classroom-title">Classroom AI</h3>
-              <p className="featured-lede">
-                Useful AI.
-                <br />
-                Closer to the classroom.
-              </p>
+              <p className="featured-lede">Private AI for schools.</p>
               <p>{featured.summary}</p>
-              <p>{featured.description}</p>
               <div className="project-tools" aria-label="Technologies">
                 {featured.tools.map((tool) => (
                   <span key={tool}>{tool}</span>
@@ -174,9 +145,10 @@ export default function Home() {
               </div>
               <details className="project-detail">
                 <summary>
-                  A little more about this project
+                  Inside the build
                   <ArrowRight size={16} aria-hidden="true" />
                 </summary>
+                <p>{featured.description}</p>
                 <p>{featured.detail}</p>
               </details>
             </div>
@@ -197,25 +169,20 @@ export default function Home() {
               <div className="system-line" />
               <div className="system-app">
                 <Code2 size={22} strokeWidth={1.6} aria-hidden="true" />
-                <span>
-                  A native app<span>A familiar place to learn & work</span>
-                </span>
+                <span>Native app</span>
               </div>
               <div className="system-line" />
               <div className="system-mac">
                 <div className="mac-arch">
                   <Sprout size={28} strokeWidth={1.4} aria-hidden="true" />
                 </div>
-                <strong>Your school’s Mac</strong>
-                <span>Open models · MLX inference</span>
+                <strong>School-owned Mac</strong>
+                <span>Open models · MLX</span>
                 <span className="system-control">
                   <Check size={12} aria-hidden="true" />
-                  School-owned infrastructure
+                  Runs locally
                 </span>
               </div>
-              <p className="architecture-footnote">
-                Native app. Local models. School-owned compute.
-              </p>
             </div>
           </article>
 
@@ -257,44 +224,31 @@ export default function Home() {
           <div className="wrap section-space">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">The way I work</p>
-                <h2 id="approach-title">
-                  Good technology
-                  <br />
-                  starts with care.
-                </h2>
+                <h2 id="approach-title">How I build</h2>
               </div>
-              <p>
-                I care about the engineering behind a product as much as the
-                experience of the person using it.
-              </p>
             </div>
             <div className="principles">
               <article>
                 <Leaf size={27} strokeWidth={1.4} aria-hidden="true" />
                 <h3>Privacy, from the start.</h3>
                 <p>
-                  Where data lives and who controls it are architecture
-                  decisions. I’m interested in systems that give people and
-                  organizations more control.
+                  Choose where data lives and who controls it before choosing a
+                  model.
                 </p>
               </article>
               <article>
                 <Code2 size={27} strokeWidth={1.4} aria-hidden="true" />
-                <h3>Build it. Then test it.</h3>
+                <h3>Test the claim.</h3>
                 <p>
-                  A working prototype teaches me more than a perfect slide. And
-                  if a model writes better code, I want to see whether that code
-                  compiles.
+                  If a model writes better code, I check whether it compiles.
                 </p>
               </article>
               <article>
                 <Users size={27} strokeWidth={1.4} aria-hidden="true" />
-                <h3>Keep the person in view.</h3>
+                <h3>Start with people.</h3>
                 <p>
-                  My background in education stays with me. Technology should
-                  respect how people think, learn, and work, and make complexity
-                  a little easier.
+                  My education background keeps the focus on how people learn
+                  and work.
                 </p>
               </article>
             </div>
@@ -316,38 +270,16 @@ export default function Home() {
                 className="object-cover"
               />
             </div>
-            <figcaption>
-              <CourtyardMark className="portrait-mark" />
-              Builder, learner, person behind the projects.
-            </figcaption>
           </figure>
           <div className="about-copy">
-            <p className="eyebrow">A little about me</p>
-            <h2 id="about-title">
-              A winding path.
-              <br />
-              <span className="muted-heading">
-                A pretty clear through-line.
-              </span>
-            </h2>
+            <h2 id="about-title">A little about me.</h2>
             <p>
-              I’ve been an educator, an engineering manager, a company
-              co-founder, and a hands-on engineer. Each chapter changed how I
-              think about building things.
+              I’ve been an educator, an engineering leader, and a co-founder.
+              Today, I work at Apple.
             </p>
             <p>
-              Today, I work at Apple, and I spend time exploring local AI,
-              native applications, and the systems that make emerging technology
-              useful in the real world.
-            </p>
-            <p>
-              I like connecting the pieces: understanding the technology, making
-              something work, and figuring out what the person on the other side
-              actually needs.
-            </p>
-            <p className="about-signoff">
-              Technical depth. Human understanding.
-              <br />A healthy amount of curiosity.
+              That path taught me to connect technical depth with what people
+              actually need.
             </p>
             <a
               href={contact.linkedin}
@@ -355,7 +287,7 @@ export default function Home() {
               rel="noreferrer"
               className="text-link"
             >
-              Find me on LinkedIn
+              LinkedIn
               <ArrowUpRight size={15} aria-hidden="true" />
             </a>
           </div>
@@ -367,7 +299,7 @@ export default function Home() {
           aria-labelledby="background-title"
         >
           <div className="background-heading">
-            <p className="eyebrow">The chapters along the way</p>
+            <p className="eyebrow">Experience</p>
             <h2 id="background-title" className="sr-only">
               Professional background
             </h2>
@@ -377,25 +309,21 @@ export default function Home() {
               <span className="chapter-dot" />
               <h3>Apple</h3>
               <p>
-                Engineering, enterprise deployment, and education technology.
-                Connecting technical depth with the needs of real institutions.
+                Engineering, education technology, and enterprise deployment.
               </p>
             </article>
             <article>
               <span className="chapter-dot" />
               <h3>LaunchFrame</h3>
               <p>
-                Co-founding a technology consultancy. Learning how to build a
-                business, grow engineers, and care for the people we served.
+                Co-founded a technology consultancy and grew its engineering
+                team.
               </p>
             </article>
             <article>
               <span className="chapter-dot" />
               <h3>The Westminster Schools</h3>
-              <p>
-                Leading a 14-person technology and engineering team. Working
-                close to the everyday needs of educators and students.
-              </p>
+              <p>Led a 14-person technology and engineering team.</p>
             </article>
           </div>
         </section>
@@ -409,19 +337,8 @@ export default function Home() {
             <div className="contact-arch">
               <CourtyardMark />
             </div>
-            <p className="eyebrow">
-              Good things often start with a conversation
-            </p>
-            <h2 id="contact-title">
-              Have a good question?
-              <br />
-              My door is open.
-            </h2>
-            <p>
-              About a project, a possibility, or something you’re figuring out.
-              <br className="hidden sm:block" /> I’d love to hear what’s on your
-              mind.
-            </p>
+            <h2 id="contact-title">My door is open.</h2>
+            <p>Have a project or a question? I’d love to hear it.</p>
             <a className="contact-button" href={`mailto:${contact.email}`}>
               Say hello
               <MoveUpRight size={17} aria-hidden="true" />
@@ -434,10 +351,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer wrap">
-        <p>
-          © {new Date().getFullYear()} Laura Anthony
-          <span>Made with care. Still growing.</span>
-        </p>
+        <p>© {new Date().getFullYear()} Laura Anthony</p>
         <div>
           <a href={contact.github} target="_blank" rel="noreferrer">
             GitHub
@@ -453,10 +367,7 @@ export default function Home() {
           </a>
         </div>
         <p className="footer-privacy">
-          No analytics or advertising cookies. Default questions stay in your
-          browser.
-          <br />
-          This personal site reflects my own work and views.
+          No analytics or ad cookies. Views are my own.
         </p>
       </footer>
     </>

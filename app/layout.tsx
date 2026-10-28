@@ -7,13 +7,12 @@ import "@fontsource/dm-sans/700.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Laura Anthony — A little space for thoughtful technology",
+  title: "Laura Anthony — Private AI & Native Apps",
   description:
-    "Hi, I’m Laura. I’m an engineer and builder exploring private AI, native applications, and technology that works for people. Come in and explore my work.",
+    "Engineer building private AI systems and native apps on Apple platforms, with a background in education and technical leadership.",
   openGraph: {
-    title: "Laura Anthony — Engineer, builder, curious human",
-    description:
-      "Applied AI, Apple platforms, and human-centered technology. A little space to explore what I’m building.",
+    title: "Laura Anthony — Engineer & Builder",
+    description: "Private AI, native apps, and technology built around people.",
     type: "website",
   },
   robots: { index: true, follow: true },

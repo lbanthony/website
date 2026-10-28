@@ -9,45 +9,45 @@ export const projects = [
     id: "classroom-ai",
     name: "Classroom AI",
     label: "Private AI for education",
-    status: "Working prototype · ongoing development",
-    category: "Personal project",
+    status: "Native application · active development",
+    category: "Applied AI · education",
     summary:
-      "What if a school could offer useful AI and keep control of the system behind it?",
+      "A private AI application that connects students, teachers, and staff to open language models running on school-owned Mac hardware.",
     description:
-      "I’m building a native experience that connects students, teachers, staff, and IT teams to open language models running on school-owned Mac hardware. I work across the interface, inference, backend, networking, authentication, and testing.",
+      "I built the native SwiftUI experience and supporting architecture, bringing together MLX inference, a Python/FastAPI backend, networking, authentication, and automated testing.",
     detail:
-      "The prototype explores guided tutoring, teacher workflows, and school operations. A central goal is giving teachers control over how AI supports learning and independent thinking. This is a working prototype, with development and evaluation still underway.",
+      "Designed for guided tutoring, lesson planning, and school workflows, with teacher control and independent thinking at the center of the experience. The current version is a working prototype in active development and evaluation.",
     tools: ["SwiftUI", "MLX", "Python / FastAPI", "Apple silicon"],
   },
   {
     id: "mills-lake",
     name: "Mills Lake Model",
     label: "Learning what better code actually means",
-    status: "Experiment · in development",
-    category: "Personal experiment",
+    status: "Model research · active development",
+    category: "Applied AI research",
     summary:
-      "Adapting an open model for Swift, then checking whether its code actually compiles.",
+      "Fine-tuning open language models for Swift, with compilation and execution as the test.",
     description:
-      "I’m exploring LoRA fine-tuning, dataset design, instruction following, and regression testing. The aim is to understand how adaptation changes model behavior, using compilation and execution as evidence rather than how convincing an answer sounds.",
+      "I use LoRA fine-tuning, targeted training datasets, compilation-based evaluation, and regression tests to study Swift code generation. The work measures model behavior against practical outcomes: code that compiles and runs.",
     tools: ["LoRA", "Open models", "Swift", "Evaluation"],
   },
   {
     id: "program-skills",
     name: "Program Skills",
     label: "A little more structure for complex work",
-    status: "Local use · ongoing experimentation",
-    category: "Personal experiment",
+    status: "Six workflows · in local use",
+    category: "AI-assisted program management",
     summary:
       "Six reusable AI-assisted workflows for requirements, dependencies, risks, and decisions.",
     description:
-      "I’m exploring how AI can support cross-functional program work while keeping findings connected to the information behind them. Evidence traceability is the design principle: a useful summary should make its reasoning inspectable.",
+      "I created six reusable skills for structuring requirements, dependencies, risks, progress, and decisions. Each workflow is designed to connect findings to supporting evidence, making the reasoning behind a summary inspectable.",
     tools: ["AI workflows", "Program design", "Evidence traceability"],
   },
   {
     id: "private-vision",
     name: "Private Vision Workshop",
     label: "Learn by making something real",
-    status: "Working workshop and application",
+    status: "Workshop & native application",
     category: "Workshop",
     summary:
       "Train an image classifier. Open the camera. See what the model has learned.",
@@ -135,7 +135,7 @@ export const profileTopics = [
       "show me",
     ],
     answer:
-      "Laura’s current projects include Classroom AI, a working prototype for locally hosted education AI; Mills Lake Model, an experiment in fine-tuning for Swift; Program Skills, six reusable AI-assisted workflows; and Private Vision Workshop, a hands-on machine-learning experience. Each project’s stage is listed on this page.",
+      "Laura’s work includes Classroom AI, a native application for locally hosted education AI; Mills Lake Model, a Swift-focused model fine-tuning and evaluation project; Program Skills, six reusable AI-assisted workflows in local use; and Private Vision Workshop, a hands-on workshop and Mac application. Classroom AI and Mills Lake Model remain in active development.",
     href: "#work",
     linkLabel: "Explore the projects",
   },
@@ -152,7 +152,7 @@ export const profileTopics = [
       "academic integrity",
     ],
     answer:
-      "Classroom AI is a working prototype and an ongoing project. It brings together a native SwiftUI app, MLX inference, open models, and a Python/FastAPI backend on school-owned Mac hardware. It explores guided tutoring and educator workflows, with teacher control and independent thinking as design goals. It is not described as a production deployment.",
+      "Classroom AI is Laura’s private AI application for education. She built the native SwiftUI experience and supporting architecture, connecting MLX inference and open models with a Python/FastAPI backend on school-owned Mac hardware. It is designed for guided tutoring and educator workflows, with teacher control and independent thinking at its center. The current version is a working prototype in active development.",
     href: "#classroom-ai",
     linkLabel: "Meet Classroom AI",
   },
@@ -185,7 +185,7 @@ export const profileTopics = [
       "risks",
     ],
     answer:
-      "Program Skills is a collection of six reusable AI-assisted workflows for technical program work, in local use and ongoing experimentation. Laura explores requirements, dependencies, risks, progress, and decisions, with findings traceable to underlying evidence.",
+      "Program Skills is a collection of six reusable AI-assisted workflows Laura created for technical program management. In local use, the skills structure requirements, dependencies, risks, progress reporting, and decisions, with findings connected to supporting evidence.",
     href: "#program-skills",
     linkLabel: "Read about Program Skills",
   },

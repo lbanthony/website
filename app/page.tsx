@@ -136,16 +136,16 @@ export default function Home() {
         >
           <div className="section-heading">
             <div>
-              <p className="eyebrow">A few things I’m putting into the world</p>
+              <p className="eyebrow">Selected projects & engineering work</p>
               <h2 id="work-title">
                 Built with care.
                 <br />
-                <span className="muted-heading">Always in progress.</span>
+                <span className="muted-heading">Made to be useful.</span>
               </h2>
             </div>
             <p>
-              I like the space between “what if” and “it works.” Here are a few
-              things I’ve been building, exploring, and helping grow.
+              Native applications, private AI systems, and engineering programs.
+              The work connects technical depth with the people who use it.
             </p>
           </div>
 
@@ -183,11 +183,11 @@ export default function Home() {
             <div
               className="classroom-visual"
               role="img"
-              aria-label="Architecture sketch: students, teachers, and staff connect through a native app to open models on a school-owned Mac."
+              aria-label="Classroom AI architecture: students, teachers, and staff connect through a native app to open models on a school-owned Mac."
             >
               <div className="architecture-caption">
                 <Leaf size={15} aria-hidden="true" />
-                An idea I’m exploring
+                How Classroom AI works
               </div>
               <div className="system-people">
                 <span>Students</span>
@@ -214,7 +214,7 @@ export default function Home() {
                 </span>
               </div>
               <p className="architecture-footnote">
-                A system sketch, from a working prototype.
+                Native app. Local models. School-owned compute.
               </p>
             </div>
           </article>

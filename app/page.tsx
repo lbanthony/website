@@ -110,10 +110,6 @@ export default function Home() {
           </figure>
         </section>
 
-        <div className="welcome-divider wrap" aria-hidden="true">
-          <Sprout size={22} strokeWidth={1.4} aria-hidden="true" />
-        </div>
-
         <section
           id="work"
           className="work-section wrap section-space"

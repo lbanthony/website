@@ -109,6 +109,9 @@ details[id] {
 .section-space {
   padding-block: 100px;
 }
+.work-section {
+  padding-top: 32px;
+}
 .skip-link {
   position: fixed;
   left: 20px;
@@ -446,18 +449,6 @@ h1 > span {
 .guide-note {
   font-size: 12px;
   color: var(--muted);
-}
-.welcome-divider {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-block: 1px solid var(--line);
-  padding-block: 21px;
-  color: var(--leaf);
-}
-.welcome-divider span {
-  font-size: 12px;
-  letter-spacing: 0.2px;
 }
 .section-heading {
   display: flex;
@@ -1035,6 +1026,9 @@ h2 {
   .section-space {
     padding-block: 66px;
   }
+  .work-section {
+    padding-top: 20px;
+  }
   .site-header {
     min-height: 100px;
     flex-wrap: wrap;
@@ -1137,13 +1131,6 @@ h2 {
   }
   .courtyard-figure figcaption {
     font-size: 9px;
-  }
-  .welcome-divider {
-    padding-block: 17px;
-    gap: 12px;
-  }
-  .welcome-divider span {
-    font-size: 10px;
   }
   .section-heading {
     display: block;

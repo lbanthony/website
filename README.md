@@ -1,6 +1,6 @@
 # Laura Anthony — the courtyard
 
-A single-page personal website built with **Next.js App Router, React, TypeScript, and Tailwind CSS v4**. Real courtyard photography, warm colors, first-person writing, and a deliberately small footprint. Fonts and images are served locally. There are no analytics scripts, remote font requests, or advertising cookies.
+A single-page personal website built with **Next.js App Router, React, TypeScript, and Tailwind CSS v4**. Real courtyard photography, warm colors, first-person writing, and a deliberately small footprint. Bricolage Grotesque headings and DM Sans body text are served locally, along with the images. There are no analytics scripts, remote font requests, or advertising cookies.
 
 ## Develop
 

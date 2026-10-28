@@ -3,6 +3,7 @@
 @theme inline {
   --font-sans:
     "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "DM Sans", sans-serif;
   --color-ink: #362f28;
   --color-leaf: #465b3d;
   --color-clay: #9c4932;
@@ -88,6 +89,13 @@ h3,
 p,
 figure {
   margin: 0;
+}
+h1,
+h2,
+h3,
+.featured-lede {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
 }
 section[id],
 article[id],
@@ -286,6 +294,7 @@ h1 > span {
   color: var(--leaf);
 }
 #guide-title {
+  font-family: var(--font-sans);
   font-size: 14px;
   line-height: 1.5;
   font-weight: 500;

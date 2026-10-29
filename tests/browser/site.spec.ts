@@ -3,12 +3,13 @@ import AxeBuilder from "@axe-core/playwright";
 
 test("page loads local images, has no horizontal overflow, and passes accessibility checks", async ({
   page,
+  baseURL,
 }) => {
   const errors: string[] = [];
   const externalRequests: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   page.on("request", (request) => {
-    if (!request.url().startsWith("http://127.0.0.1:3000"))
+    if (new URL(request.url()).origin !== new URL(baseURL!).origin)
       externalRequests.push(request.url());
   });
   await page.goto("/");

@@ -20,3 +20,5 @@ jobs:
       - run: npm run typecheck
       - run: npx playwright install --with-deps chromium webkit
       - run: npx playwright test
+      - run: npm run build:pages
+      - run: npx wrangler pages functions build --outdir .wrangler/functions

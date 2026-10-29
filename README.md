@@ -44,14 +44,25 @@ Cloud AI is optional. If `ANTHROPIC_API_KEY` is configured on the server, visito
 
 Copy `.env.example` to `.env.local` to configure the optional assistant. Keep the key server-side. `ANTHROPIC_MODEL` is configurable, with the original site’s model as default. The API validates origin, consent, role, and size, has a timeout, and returns generic errors. Profile answers remain available when AI is unconfigured or unavailable. Configure host-level request rate limits before exposing a paid AI endpoint to heavy public traffic.
 
-## Deployment and migration
+## Deployment
 
-The previous static `index.html` and Cloudflare Pages Function are replaced by a Next.js app and `app/api/chat/route.ts`. The old entry points are removed to avoid serving competing implementations.
+Production is hosted at **https://lanthony.app** on the existing Cloudflare Pages project `websites`, connected to `main` in `lbanthony/website`.
+
+Cloudflare build command: `npm run build:pages`. Build output directory: `out`. The build renders the Next.js page to HTML and generates responsive WebP photos locally. It keeps React interactions, Tailwind styles, and fonts on the same origin without requiring a paid image service.
+
+The optional cloud assistant runs in `functions/api/chat.ts`, using the existing Pages server secret `ANTHROPIC_API_KEY`. It shares its validation and response handling with the native Next.js route through `lib/chat.ts`. The browser-only profile guide remains the default. `_routes.json` limits Function execution to `/api/chat`; other requests serve static files. Do not upload `.next` or the repository root as the Pages build output.
+
+To check the Pages version locally:
+
+```sh
+npm run build:pages
+npx wrangler pages dev out --port 3001
+```
+
+Optional local Pages secrets belong in ignored `.dev.vars`. Rebuild with `npm run build` before using `npm start` again, since the Pages build replaces `.next` with the export build.
 
 Deploy using a host with native Next.js support, such as Vercel, or run `npm run build` and `npm start` on a Node server. Build command: `npm run build`. No static output directory is needed on a native Next.js host. Add `ANTHROPIC_API_KEY` only if cloud AI is wanted.
 
-If retaining Cloudflare hosting, migrate the old static Pages configuration to the supported Next.js-on-Workers adapter workflow before switching production traffic. Do not use a static export when the optional chat route is required. This change does not update DNS or hosting settings automatically.
+Main content arrives as rendered HTML, images use `next/image` with responsive optimization, and only the question guide needs client-side state. Layouts cover phones through large desktops, keyboard navigation, visible focus, native disclosure controls, and reduced-motion preferences. Tailwind v4 targets modern browsers, including Safari 16.4+.
 
-Main content is server-rendered, images use `next/image` responsive optimization, and only the question guide needs client-side state. Layouts cover phones through large desktops, keyboard navigation, visible focus, native disclosure controls, and reduced-motion preferences. Tailwind v4 targets modern browsers, including Safari 16.4+.
-
-Official references: [Next.js installation](https://nextjs.org/docs/app/getting-started/installation), [Tailwind with Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs), [Cloudflare Next.js deployment](https://developers.cloudflare.com/workers/framework-guides/web-apps/nextjs/).
+Official references: [Next.js installation](https://nextjs.org/docs/app/getting-started/installation), [Tailwind with Next.js](https://tailwindcss.com/docs/installation/framework-guides/nextjs), [Cloudflare Next.js static deployment](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/).

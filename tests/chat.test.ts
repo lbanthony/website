@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { POST } from "../app/api/chat/route";
+import { onRequestPost } from "../functions/api/chat";
 
 const question = {
   consent: true,
@@ -109,5 +110,28 @@ test("provider errors stay private and successful responses are extracted safely
     globalThis.fetch = originalFetch;
     if (previous === undefined) delete process.env.ANTHROPIC_API_KEY;
     else process.env.ANTHROPIC_API_KEY = previous;
+  }
+});
+
+test("Pages uses its bound server secret and still requires visitor consent", async () => {
+  const originalFetch = globalThis.fetch;
+  let calls = 0;
+  try {
+    globalThis.fetch = async (_url, init) => {
+      calls++;
+      assert.equal(new Headers(init?.headers).get("x-api-key"), "pages-test-key");
+      assert.equal(JSON.parse(init?.body as string).model, "configured-model");
+      return Response.json({ content: [{ type: "text", text: "A grounded answer." }] });
+    };
+    const env = { ANTHROPIC_API_KEY: "pages-test-key", ANTHROPIC_MODEL: "configured-model" };
+    const denied = await onRequestPost({ request: request({ messages: question.messages }), env });
+    assert.equal(denied.status, 400);
+    assert.equal(calls, 0);
+    const response = await onRequestPost({ request: request(question), env });
+    assert.equal(response.status, 200);
+    assert.deepEqual(await response.json(), { reply: "A grounded answer." });
+    assert.equal(calls, 1);
+  } finally {
+    globalThis.fetch = originalFetch;
   }
 });

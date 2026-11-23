@@ -6,7 +6,6 @@ import {
   ArrowUpRight,
   BookOpen,
   Check,
-  Leaf,
   LoaderCircle,
   RotateCcw,
 } from "lucide-react";
@@ -58,7 +57,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
       setAnswer({ answer: data.reply, source: "ai" });
     } catch {
       setError(
-        "AI couldn’t connect. Here’s an answer from my profile instead.",
+        "AI couldn’t connect, so here’s an answer from my profile instead.",
       );
       setAnswer({ ...answerFromProfile(text), source: "profile" });
     } finally {
@@ -73,10 +72,10 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
       className="guide scroll-mt-8"
       aria-labelledby="guide-title"
     >
-      <div className="flex items-center gap-2.5 text-sm font-medium">
-        <Leaf size={16} aria-hidden="true" />
-        <h2 id="guide-title">Ask about my work.</h2>
-      </div>
+      <h2 id="guide-title">Ask about my work.</h2>
+      <p className="guide-intro">
+        Answers come from my published profile, matched right in your browser.
+      </p>
       <form
         className="question-form"
         onSubmit={(event) => {
@@ -116,7 +115,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
         </button>
       </form>
       <div className="suggestions" aria-label="Suggested questions">
-        {["What are you building?", "Why private AI?", "Your path here?"].map(
+        {["What are you building?", "Why private AI?", "How do you lead?"].map(
           (label, i) => (
             <button
               key={label}
@@ -127,7 +126,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
                   [
                     "What are you building?",
                     "Why private AI?",
-                    "What is your experience?",
+                    "How do you lead a team?",
                   ][i],
                 )
               }

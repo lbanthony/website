@@ -14,8 +14,9 @@ test("page loads local images, has no horizontal overflow, and passes accessibil
   });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-    /Hi, I’m Laura/,
+    /AI product and engineering leader/,
   );
+  await expect(page.locator(".glance li")).toHaveCount(5);
   await page.evaluate(() => document.fonts.ready);
   await expect
     .poll(() =>
@@ -41,7 +42,7 @@ test("page loads local images, has no horizontal overflow, and passes accessibil
   expect(violations).toEqual([]);
   expect(errors).toEqual([]);
   expect(externalRequests).toEqual([]);
-  await expect(page.getByRole("link", { name: "Say hello" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: /lbanthony91@gmail\.com/ })).toHaveAttribute(
     "href",
     "mailto:lbanthony91@gmail.com",
   );

@@ -1,18 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/bricolage-grotesque/standard.css";
-import "@fontsource/dm-sans/400.css";
-import "@fontsource/dm-sans/500.css";
-import "@fontsource/dm-sans/600.css";
-import "@fontsource/dm-sans/700.css";
+import "@fontsource-variable/fraunces/opsz.css";
+import "@fontsource-variable/fraunces/opsz-italic.css";
+import "@fontsource-variable/jost/wght.css";
+import "@fontsource/ibm-plex-mono/400.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Laura Anthony — Private AI & Native Apps",
+  title: "Laura Anthony · AI Product and Engineering Leader",
   description:
-    "Engineer building private AI systems and native apps on Apple platforms, with a background in education and technical leadership.",
+    "Laura Anthony leads teams, sets product direction, and builds AI technology herself. Ten years across education and enterprise, most recently at Apple.",
   openGraph: {
-    title: "Laura Anthony — Engineer & Builder",
-    description: "Private AI, native apps, and technology built around people.",
+    title: "Laura Anthony · AI Product and Engineering Leader",
+    description:
+      "Leading teams, shaping products, and building private AI. Apple, The Westminster Schools, LaunchFrame.",
     type: "website",
   },
   robots: { index: true, follow: true },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f8f1e8",
+  themeColor: "#f3eee5",
 };
 
 export default function RootLayout({

@@ -1,43 +1,106 @@
 import Image from "next/image";
-import {
-  ArrowDown,
-  ArrowRight,
-  ArrowUpRight,
-  Check,
-  Code2,
-  DoorOpen,
-  Leaf,
-  MoveUpRight,
-  Sprout,
-  Users,
-} from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
+import { CaseVisual } from "@/components/case-visuals";
+import { Intersection } from "@/components/intersection";
 import { ProfileGuide } from "@/components/profile-guide";
-import { contact, projects } from "@/lib/profile";
+import {
+  caseStudies,
+  contact,
+  education,
+  experience,
+  glance,
+  headline,
+  impact,
+  moreWork,
+  type CaseStudy,
+} from "@/lib/profile";
 
-function CourtyardMark({ className = "" }: { className?: string }) {
+const resumeHref =
+  contact.resume || `mailto:${contact.email}?subject=R%C3%A9sum%C3%A9%20request`;
+const resumeLabel = contact.resume ? "Résumé" : "Request résumé";
+const resumeExternal = Boolean(contact.resume);
+
+function ResumeLink({ className, short = false }: { className: string; short?: boolean }) {
   return (
-    <svg
+    <a
+      href={resumeHref}
       className={className}
-      width="33"
-      height="37"
-      viewBox="0 0 40 44"
-      fill="none"
-      aria-hidden="true"
+      {...(resumeExternal ? { target: "_blank", rel: "noreferrer" } : {})}
     >
-      <path
-        d="M6 38V20a14 14 0 0 1 28 0v18"
-        stroke="currentColor"
-        strokeWidth="2.2"
-        strokeLinecap="round"
-      />
-      <path d="M20 38V22c0-7 4-11 10-12 1 7-3 12-10 12Z" fill="currentColor" />
-      <path d="M20 29c-7 0-10-4-10-9 6 0 10 3 10 9Z" fill="currentColor" />
-    </svg>
+      {short ? "Résumé" : resumeLabel}
+      <ArrowUpRight size={15} aria-hidden="true" />
+    </a>
+  );
+}
+
+function CaseStudyBlock({
+  study,
+  index,
+  size,
+}: {
+  study: CaseStudy;
+  index: number;
+  size: "feature" | "feature reverse" | "compact";
+}) {
+  return (
+    <article
+      id={study.id}
+      className={`case case--${size.replace(" ", " case--")}`}
+      aria-labelledby={`${study.id}-title`}
+    >
+      <header className="case-head">
+        <span className="case-index" aria-hidden="true">
+          0{index + 1}
+        </span>
+        <div className="case-meta mono">
+          <span>{study.kicker}</span>
+          <span className="case-status">
+            <span className="status-dot" aria-hidden="true" />
+            {study.status}
+          </span>
+        </div>
+      </header>
+
+      <div className="case-body">
+        <CaseVisual type={study.visual} />
+        <div className="case-copy">
+          <h3 id={`${study.id}-title`}>{study.name}</h3>
+          <p className="case-thesis">{study.thesis}</p>
+          <dl className="case-metrics">
+            {study.metrics.map((m) => (
+              <div key={m.label}>
+                <dt className="metric-label">{m.label}</dt>
+                <dd className="metric-value">{m.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </div>
+
+      <dl className="case-facts">
+        <div>
+          <dt className="mono">The problem</dt>
+          <dd>{study.problem}</dd>
+        </div>
+        <div>
+          <dt className="mono">My role</dt>
+          <dd>{study.role}</dd>
+        </div>
+        <div>
+          <dt className="mono">What I did</dt>
+          <dd>{study.work}</dd>
+        </div>
+        <div>
+          <dt className="mono">Outcome</dt>
+          <dd>{study.outcome}</dd>
+        </div>
+      </dl>
+      <p className="case-tools mono">{study.tools.join("  ·  ")}</p>
+    </article>
   );
 }
 
 export default function Home() {
-  const featured = projects[0];
   return (
     <>
       <a href="#main" className="skip-link">
@@ -45,324 +108,294 @@ export default function Home() {
       </a>
       <header className="site-header wrap">
         <a href="#home" className="brand" aria-label="Laura Anthony, home">
-          <CourtyardMark />
-          <span>Laura Anthony</span>
+          <span className="brand-mark" aria-hidden="true" />
+          Laura Anthony
         </a>
         <nav aria-label="Main navigation">
-          <a href="#work">My work</a>
-          <a href="#about">About me</a>
-          <a href="#contact" className="nav-contact">
-            Let’s talk
-            <ArrowUpRight size={15} aria-hidden="true" />
-          </a>
+          <a href="#work">Work</a>
+          <a href="#experience">Experience</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <ResumeLink className="nav-resume" short />
         </nav>
       </header>
 
       <main id="main">
-        <section id="home" className="hero wrap" aria-labelledby="welcome">
-          <div className="hero-content">
-            <h1 id="welcome">
-              Hi, I’m Laura.
-              <br />I build with
-              <br />
-              <span>people in mind.</span>
-            </h1>
-            <p className="hero-intro">
-              I’m an engineer building private AI systems and native apps on
-              Apple platforms.
+        {/* ---------- First screen: the ten second answer ---------- */}
+        <section id="home" className="hero wrap" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="eyebrow mono">
+              {headline.name} · {headline.place}
             </p>
-            <a href="#work" className="text-link hero-link">
-              Explore my work
-              <ArrowDown size={16} aria-hidden="true" />
-            </a>
-            <ProfileGuide
-              aiAvailable={Boolean(process.env.ANTHROPIC_API_KEY)}
-            />
+            <h1 id="hero-title">
+              AI product <em>and</em> engineering leader.
+            </h1>
+            <p className="hero-intro">{headline.intro}</p>
+            <div className="hero-actions">
+              <a className="button button--solid" href={`mailto:${contact.email}`}>
+                Email me
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <a
+                className="button"
+                href={contact.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </a>
+              <ResumeLink className="button" />
+            </div>
           </div>
-          <figure className="courtyard-figure">
-            <div className="courtyard-photo">
+          <figure className="hero-portrait">
+            <div className="portrait-frame">
               <Image
-                src="/images/courtyard.jpg"
-                alt="An open wooden doorway in a warm brick wall, leading into a sunlit courtyard filled with plants and terracotta steps."
+                src="/images/laura.jpg"
+                alt="Laura Anthony standing in a bright workspace beside a round wooden table."
                 fill
                 loading="eager"
                 fetchPriority="high"
-                sizes="(max-width: 767px) calc(100vw - 40px), (max-width: 1200px) 42vw, 530px"
+                sizes="(max-width: 860px) 60vw, 360px"
                 className="object-cover"
               />
-              <span className="photo-note">
-                <DoorOpen size={17} aria-hidden="true" />
-                Come on in.
-              </span>
             </div>
-            <figcaption>
-              <span className="photo-credit">
-                Photo by{" "}
-                <a
-                  href="https://unsplash.com/photos/green-plant-on-white-pot-bJI6wdahhYs"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Mick Haupt
-                </a>
-              </span>
-            </figcaption>
           </figure>
+
+          <ol className="glance" aria-label="At a glance">
+            {glance.map((item, i) => (
+              <li key={item.label}>
+                <a href={item.href}>
+                  <span className="glance-label mono">
+                    0{i + 1} {item.label}
+                  </span>
+                  <span className="glance-value">{item.value}</span>
+                  <ArrowDownRight size={16} className="glance-arrow" aria-hidden="true" />
+                </a>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        <section
-          id="work"
-          className="work-section wrap section-space"
-          aria-labelledby="work-title"
-        >
-          <div className="section-heading">
-            <div>
-              <h2 id="work-title">Selected work</h2>
-            </div>
+        {/* ---------- Impact ---------- */}
+        <section className="impact" aria-labelledby="impact-title">
+          <div className="wrap">
+            <h2 id="impact-title" className="mono impact-title">
+              Impact
+            </h2>
+            <dl className="impact-grid">
+              {impact.map((item) => (
+                <div key={item.value}>
+                  <dt className="impact-label">{item.label}</dt>
+                  <dd className="impact-value">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* ---------- Selected work ---------- */}
+        <section id="work" className="work wrap section-space" aria-labelledby="work-title">
+          <div className="section-head">
+            <p className="mono section-kicker">Selected work</p>
+            <h2 id="work-title">
+              Built, led, <em>and</em> shipped.
+            </h2>
+            <p className="section-lead">
+              Three case studies in the same format: the problem, my role, what
+              I did, and what changed.
+            </p>
           </div>
 
-          <article
-            id="classroom-ai"
-            className="featured-project"
-            aria-labelledby="classroom-title"
-          >
-            <div className="featured-copy">
-              <p className="project-kicker">
-                <span className="status-dot" />
-                {featured.status}
-              </p>
-              <h3 id="classroom-title">Classroom AI</h3>
-              <p className="featured-lede">Private AI for schools.</p>
-              <p>{featured.summary}</p>
-              <div className="project-tools" aria-label="Technologies">
-                {featured.tools.map((tool) => (
-                  <span key={tool}>{tool}</span>
-                ))}
-              </div>
-              <details className="project-detail">
-                <summary>
-                  Inside the build
-                  <ArrowRight size={16} aria-hidden="true" />
-                </summary>
-                <p>{featured.description}</p>
-                <p>{featured.detail}</p>
-              </details>
-            </div>
-            <div
-              className="classroom-visual"
-              role="img"
-              aria-label="Classroom AI architecture: students, teachers, and staff connect through a native app to open models on a school-owned Mac."
-            >
-              <div className="architecture-caption">
-                <Leaf size={15} aria-hidden="true" />
-                How Classroom AI works
-              </div>
-              <div className="system-people">
-                <span>Students</span>
-                <span>Teachers</span>
-                <span>Staff</span>
-              </div>
-              <div className="system-line" />
-              <div className="system-app">
-                <Code2 size={22} strokeWidth={1.6} aria-hidden="true" />
-                <span>Native app</span>
-              </div>
-              <div className="system-line" />
-              <div className="system-mac">
-                <div className="mac-arch">
-                  <Sprout size={28} strokeWidth={1.4} aria-hidden="true" />
-                </div>
-                <strong>School-owned Mac</strong>
-                <span>Open models · MLX</span>
-                <span className="system-control">
-                  <Check size={12} aria-hidden="true" />
-                  Runs locally
-                </span>
-              </div>
-            </div>
-          </article>
+          <CaseStudyBlock study={caseStudies[0]} index={0} size="feature" />
+          <CaseStudyBlock study={caseStudies[1]} index={1} size="feature reverse" />
+          <CaseStudyBlock study={caseStudies[2]} index={2} size="compact" />
 
-          <div className="project-list">
-            {projects.slice(1).map((project, i) => (
+          <div className="more-work">
+            <h3 className="mono more-title">More I’m building</h3>
+            {moreWork.map((project) => (
               <details className="project-row" key={project.id} id={project.id}>
                 <summary>
-                  <span className="project-number">0{i + 2}</span>
-                  <span className="project-row-main">
-                    <span className="project-category">{project.category}</span>
-                    <h3>{project.name}</h3>
-                    <span className="project-row-summary">
-                      {project.summary}
-                    </span>
-                  </span>
-                  <span className="project-status">{project.status}</span>
-                  <span className="project-open" aria-hidden="true">
-                    <span />
-                  </span>
+                  <span className="project-category mono">{project.category}</span>
+                  <span className="project-name">{project.name}</span>
+                  <span className="project-summary">{project.summary}</span>
+                  <span className="project-open" aria-hidden="true" />
                 </summary>
                 <div className="project-expanded">
                   <p>{project.description}</p>
-                  <div className="project-tools">
-                    {project.tools.map((tool) => (
-                      <span key={tool}>{tool}</span>
-                    ))}
-                  </div>
+                  <p className="mono">
+                    {project.status} · {project.tools.join(" · ")}
+                  </p>
                 </div>
               </details>
             ))}
           </div>
         </section>
 
-        <section
-          id="approach"
-          className="approach-section"
-          aria-labelledby="approach-title"
-        >
-          <div className="wrap section-space">
-            <div className="section-heading">
-              <div>
-                <h2 id="approach-title">How I build</h2>
-              </div>
+        {/* ---------- The intersection ---------- */}
+        <section className="overlap" aria-labelledby="overlap-title">
+          <div className="wrap section-space overlap-inner">
+            <div className="section-head section-head--tight">
+              <p className="mono section-kicker">Why it works</p>
+              <h2 id="overlap-title">
+                My work lives where three disciplines meet.
+              </h2>
             </div>
-            <div className="principles">
-              <article>
-                <Leaf size={27} strokeWidth={1.4} aria-hidden="true" />
-                <h3>Privacy, from the start.</h3>
-                <p>
-                  Choose where data lives and who controls it before choosing a
-                  model.
-                </p>
-              </article>
-              <article>
-                <Code2 size={27} strokeWidth={1.4} aria-hidden="true" />
-                <h3>Test the claim.</h3>
-                <p>
-                  If a model writes better code, I check whether it compiles.
-                </p>
-              </article>
-              <article>
-                <Users size={27} strokeWidth={1.4} aria-hidden="true" />
-                <h3>Start with people.</h3>
-                <p>
-                  My education background keeps the focus on how people learn
-                  and work.
-                </p>
-              </article>
-            </div>
+            <Intersection />
           </div>
         </section>
 
+        {/* ---------- Experience ---------- */}
         <section
-          id="about"
-          className="about-section wrap section-space"
-          aria-labelledby="about-title"
+          id="experience"
+          className="experience wrap section-space"
+          aria-labelledby="experience-title"
         >
-          <figure className="portrait-figure">
-            <div className="portrait-photo">
-              <Image
-                src="/images/laura.jpg"
-                alt="Laura Anthony standing beside a table and a plant in a bright workspace."
-                fill
-                sizes="(max-width: 767px) calc(100vw - 64px), 360px"
-                className="object-cover"
-              />
-            </div>
+          <div className="section-head">
+            <p className="mono section-kicker">Experience</p>
+            <h2 id="experience-title">Ten years of leading and building.</h2>
+          </div>
+          <ol className="experience-list">
+            {experience.map((job) => (
+              <li key={job.org}>
+                <div className="exp-org">
+                  <h3>{job.org}</h3>
+                  <p className="mono">{job.years}</p>
+                </div>
+                <div className="exp-role">
+                  <p>{job.role}</p>
+                  <p className="mono">{job.scope}</p>
+                </div>
+                <p className="exp-highlights">{job.highlights}</p>
+              </li>
+            ))}
+          </ol>
+          <ul className="education mono" aria-label="Education">
+            {education.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </section>
+
+        {/* ---------- Approach ---------- */}
+        <section id="approach" className="approach" aria-labelledby="approach-title">
+          <div className="wrap section-space">
+            <blockquote className="pull-quote">
+              <p>
+                Decide where data lives and who controls it <em>before</em>{" "}
+                choosing a model.
+              </p>
+            </blockquote>
+            <h2 id="approach-title" className="mono section-kicker">
+              How I lead
+            </h2>
+            <ol className="principles">
+              <li>
+                <h3>Start with the customer’s problem.</h3>
+                <p>
+                  Discovery comes first. The architecture follows what people
+                  actually need, not the other way around.
+                </p>
+              </li>
+              <li>
+                <h3>Prove it with a working build.</h3>
+                <p>
+                  I prototype early so decisions rest on something real. If a
+                  model claims to write better code, I check whether it compiles.
+                </p>
+              </li>
+              <li>
+                <h3>Grow the people around me.</h3>
+                <p>
+                  At LaunchFrame I moved five specialists into engineering
+                  roles. Today I co-chair a mentorship program for Mac admins.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        {/* ---------- About ---------- */}
+        <section id="about" className="about wrap section-space" aria-labelledby="about-title">
+          <figure className="about-photo">
+            <Image
+              src="/images/laura-at-apple-park.jpg"
+              alt="Laura Anthony looking back over her shoulder outside a curved glass building."
+              fill
+              sizes="(max-width: 860px) calc(100vw - 40px), 520px"
+              className="object-cover"
+            />
           </figure>
           <div className="about-copy">
-            <h2 id="about-title">A little about me.</h2>
+            <p className="mono section-kicker">About</p>
+            <h2 id="about-title">Educator, engineering manager, co-founder.</h2>
             <p>
-              I’ve been an educator, an engineering leader, and a co-founder.
-              Today, I work at Apple.
+              I started in schools, moved into engineering leadership, and
+              co-founded a company along the way. Today I work at Apple.
             </p>
             <p>
-              That path taught me to connect technical depth with what people
-              actually need.
+              Across all of it, the job has been the same: understand what people
+              need, then lead the team and build the technology that gets them
+              there.
             </p>
-            <a
-              href={contact.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="text-link"
-            >
-              LinkedIn
-              <ArrowUpRight size={15} aria-hidden="true" />
-            </a>
-          </div>
-        </section>
 
-        <section
-          id="background"
-          className="background-section wrap"
-          aria-labelledby="background-title"
-        >
-          <div className="background-heading">
-            <p className="eyebrow">Experience</p>
-            <h2 id="background-title" className="sr-only">
-              Professional background
-            </h2>
-          </div>
-          <div className="background-list">
-            <article>
-              <span className="chapter-dot" />
-              <h3>Apple</h3>
-              <p>
-                Engineering, education technology, and enterprise deployment.
-              </p>
-            </article>
-            <article>
-              <span className="chapter-dot" />
-              <h3>LaunchFrame</h3>
-              <p>
-                Co-founded a technology consultancy and grew its engineering
-                team.
-              </p>
-            </article>
-            <article>
-              <span className="chapter-dot" />
-              <h3>The Westminster Schools</h3>
-              <p>Led a 14-person technology and engineering team.</p>
-            </article>
-          </div>
-        </section>
-
-        <section
-          id="contact"
-          className="contact-section wrap"
-          aria-labelledby="contact-title"
-        >
-          <div className="contact-inner">
-            <div className="contact-arch">
-              <CourtyardMark />
+            <div className="guide-wrap">
+              <p className="mono guide-kicker">Try something I built</p>
+              <ProfileGuide aiAvailable={Boolean(process.env.ANTHROPIC_API_KEY)} />
             </div>
-            <h2 id="contact-title">My door is open.</h2>
-            <p>Have a project or a question? I’d love to hear it.</p>
-            <a className="contact-button" href={`mailto:${contact.email}`}>
-              Say hello
-              <MoveUpRight size={17} aria-hidden="true" />
-            </a>
-            <a className="email-link" href={`mailto:${contact.email}`}>
-              {contact.email}
-            </a>
+          </div>
+        </section>
+
+        {/* ---------- Contact ---------- */}
+        <section id="contact" className="contact" aria-labelledby="contact-title">
+          <div className="wrap contact-inner">
+            <p className="mono section-kicker">Contact</p>
+            <h2 id="contact-title">Let’s talk.</h2>
+            <p className="contact-lead">
+              Have a role, a project, or a question? I’d like to hear it.
+            </p>
+            <ul className="contact-links">
+              <li>
+                <a href={`mailto:${contact.email}`}>
+                  <span className="mono">Email</span>
+                  <span className="contact-value">{contact.email}</span>
+                  <ArrowRight size={22} aria-hidden="true" />
+                </a>
+              </li>
+              <li>
+                <a href={contact.linkedin} target="_blank" rel="noreferrer">
+                  <span className="mono">LinkedIn</span>
+                  <span className="contact-value">in/lbanthony91</span>
+                  <ArrowUpRight size={22} aria-hidden="true" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href={resumeHref}
+                  {...(resumeExternal ? { target: "_blank", rel: "noreferrer" } : {})}
+                >
+                  <span className="mono">Résumé</span>
+                  <span className="contact-value">{resumeLabel}</span>
+                  <ArrowUpRight size={22} aria-hidden="true" />
+                </a>
+              </li>
+            </ul>
           </div>
         </section>
       </main>
 
       <footer className="site-footer wrap">
-        <p>© {new Date().getFullYear()} Laura Anthony</p>
+        <p>© {new Date().getFullYear()} Laura Anthony · Atlanta, Georgia</p>
         <div>
           <a href={contact.github} target="_blank" rel="noreferrer">
             GitHub
-            <ArrowUpRight size={12} aria-hidden="true" />
           </a>
           <a href={contact.linkedin} target="_blank" rel="noreferrer">
             LinkedIn
-            <ArrowUpRight size={12} aria-hidden="true" />
           </a>
-          <a href="#home">
-            Back to the top
-            <ArrowRight size={12} className="-rotate-90" aria-hidden="true" />
-          </a>
+          <a href="#home">Back to top</a>
         </div>
-        <p className="footer-privacy">
+        <p className="footer-privacy mono">
           No analytics or ad cookies. Views are my own.
         </p>
       </footer>

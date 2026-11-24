@@ -251,8 +251,8 @@ export const experience = [
       "Grew the consultancy 45% a year with 85% client retention, and built a talent pathway that moved five specialists into engineering roles.",
   },
   {
-    org: "St. Paul’s Schools",
-    years: "2014 to 2017",
+    org: "Saint Paul’s School",
+    years: "2014 to 2018",
     role: "Director of Technology",
     scope: "4 person team · 1,000+ users",
     highlights:

@@ -14,36 +14,42 @@ export const headline = {
   place: "Atlanta",
   title: "AI product and engineering leader",
   intro:
-    "I lead teams, set product direction, and build the technology myself. Ten years across education and enterprise, most recently at Apple.",
+    "I lead teams, shape product strategy, and build human-centered technology. Currently at Apple, with over a decade of experience across education and enterprise.",
 };
 
-// The first screen answers a recruiter's questions in about ten seconds.
-// Each line links to the proof further down the page.
-export const glance = [
+// The credentials strip on the first screen. The number is the headline;
+// the caption says what it measures and whose result it is.
+export const credentials = [
   {
-    label: "Now",
-    value: "Apple, since 2019",
+    label: "Experience",
+    value: "10+",
+    caption: "years in education, engineering, and enterprise",
     href: "#experience",
   },
   {
-    label: "Before",
-    value: "The Westminster Schools and LaunchFrame",
-    href: "#experience",
-  },
-  {
-    label: "Leads",
-    value: "Teams of up to 14 direct reports",
-    href: "#experience",
-  },
-  {
-    label: "Builds",
-    value: "Zero to one AI products, from model to native app",
-    href: "#classroom-ai",
+    label: "Leadership",
+    value: "14",
+    caption: "direct reports led at The Westminster Schools",
+    href: "#teams",
+    accent: true,
   },
   {
     label: "Scale",
-    value: "Enterprise and education deployments at 1,000+ institutions",
+    value: "1,000+",
+    caption: "institutions supported by the Apple team I helped build",
     href: "#deployment-success",
+  },
+  {
+    label: "Impact",
+    value: "60%",
+    caption: "approximate reduction in team deployment timelines",
+    href: "#deployment-success",
+  },
+  {
+    label: "Building",
+    value: "0 → 1",
+    caption: "AI product development, from model to native app",
+    href: "#classroom-ai",
   },
 ];
 
@@ -60,6 +66,7 @@ export type CaseStudy = {
   work: string;
   outcome: string;
   metrics: { value: string; label: string }[];
+  metricsNote?: string;
   tools: string[];
   visual: Visual;
 };
@@ -104,6 +111,7 @@ export const caseStudies: CaseStudy[] = [
       { value: "99%", label: "customer satisfaction" },
       { value: "10", label: "engineers on the team" },
     ],
+    metricsNote: "Team results",
     tools: ["Technical leadership", "Deployment architecture", "Customer discovery"],
     visual: "timeline",
   },
@@ -129,12 +137,12 @@ export const caseStudies: CaseStudy[] = [
   },
 ];
 
-export const moreWork = [
+export const experiments = [
   {
     id: "mills-lake",
     name: "Mills Lake Model",
     category: "AI research",
-    status: "Active development",
+    status: "Research · in progress",
     summary:
       "Fine-tuning open models for Swift, tested by whether the code compiles and runs.",
     description:
@@ -145,7 +153,7 @@ export const moreWork = [
     id: "program-skills",
     name: "Program Skills",
     category: "AI workflows",
-    status: "In local use",
+    status: "Working tool · in personal use",
     summary: "Six reusable workflows for requirements, risks, and decisions.",
     description:
       "I created six skills covering requirements, dependencies, risks, progress, and decisions, with every finding traceable to source evidence.",
@@ -155,7 +163,7 @@ export const moreWork = [
     id: "private-vision",
     name: "Private Vision Workshop",
     category: "Machine learning",
-    status: "Workshop and app",
+    status: "Prototype · workshop app",
     summary: "Train a model, then see live predictions on your own Mac.",
     description:
       "Participants use Create ML to train an image classifier, then test live camera predictions in a SwiftUI app I built.",
@@ -165,7 +173,7 @@ export const moreWork = [
     id: "profile-guide",
     name: "The guide on this site",
     category: "Personal build",
-    status: "Live on this page",
+    status: "In production · this site",
     summary:
       "Answers questions about my work in your browser, with an optional cloud AI mode.",
     description:
@@ -184,7 +192,7 @@ export const projects = [
     detail: c.outcome,
     tools: c.tools,
   })),
-  ...moreWork.map((m) => ({
+  ...experiments.map((m) => ({
     id: m.id,
     name: m.name,
     status: m.status,
@@ -218,6 +226,28 @@ export const intersection = [
   },
 ];
 
+// "Building teams, not just technology." These come from roles where Laura
+// managed people and owned the business directly.
+export const teamStats = [
+  { value: "14", label: "direct reports led", org: "The Westminster Schools", accent: true },
+  { value: "100%", label: "staff retention on that team", org: "The Westminster Schools" },
+  { value: "$1M", label: "technology budget managed", org: "The Westminster Schools" },
+  { value: "45%", label: "annual growth as co-founder", org: "LaunchFrame" },
+  { value: "85%", label: "client retention across 150+ clients", org: "LaunchFrame" },
+  { value: "5", label: "specialists moved into engineering roles", org: "LaunchFrame" },
+];
+
+export const nextFocus = {
+  lead: "How we move AI from experimentation to meaningful, responsible adoption.",
+  areas: [
+    "Human-centered AI products",
+    "Private and on-device intelligence",
+    "AI adoption at organizational scale",
+    "Building high-performing technical teams",
+    "Where AI, education, and enterprise technology meet",
+  ],
+};
+
 export const experience = [
   {
     org: "Apple",
@@ -233,7 +263,7 @@ export const experience = [
     role: "Engineering Manager, Educational Technology",
     scope: "14 direct reports · 3,000+ students, educators, and staff",
     highlights:
-      "Kept 100% staff retention, cut support tickets 35% through self service workflows, managed a million dollar technology budget, and wrote student privacy policy with legal and board review.",
+      "Cut support tickets 35% through self service workflows and wrote student privacy policy with legal and board review.",
   },
   {
     org: "LaunchFrame",
@@ -241,7 +271,7 @@ export const experience = [
     role: "Co-founder and Product Lead",
     scope: "150+ clients in education, small business, and legal",
     highlights:
-      "Grew the consultancy 45% a year with 85% client retention, and built a talent pathway that moved five specialists into engineering roles.",
+      "Co-founded the consultancy, managed vendor partnerships with Apple, Cisco Meraki, and Savant, and built a talent pathway from help desk into engineering.",
   },
   {
     org: "Saint Paul’s School",
@@ -309,6 +339,8 @@ export const profileTopics = [
       "experiments",
       "current work",
       "show me",
+      "ai products",
+      "products have you built",
     ],
     answer:
       "Laura’s own builds include Classroom AI, Mills Lake Model, Program Skills, and Private Vision Workshop: native apps, model research, and reusable AI workflows. Classroom AI and Mills Lake remain in active development.",
@@ -407,6 +439,8 @@ export const profileTopics = [
       "engineering",
       "python",
       "native apps",
+      "technical background",
+      "technical skills",
     ],
     answer:
       "Swift and SwiftUI, MLX and local models, Python and FastAPI, LoRA, retrieval, Create ML, Vision, and Core ML. Laura also works across networking, security, and deployment architecture.",
@@ -426,6 +460,10 @@ export const profileTopics = [
       "team size",
       "mentor",
       "mentoring",
+      "teams have you led",
+      "people management",
+      "leadership philosophy",
+      "leadership style",
     ],
     answer:
       "Laura has led teams of up to 14 direct reports, helped scale a national team of 10 engineers at Apple, and co-founded LaunchFrame, where she moved five specialists into engineering roles.",
@@ -445,11 +483,45 @@ export const profileTopics = [
       "impact",
       "metrics",
       "deployment",
+      "measurable",
+      "delivered",
+      "career evolved",
+      "career path",
     ],
     answer:
       "Laura works at Apple, co-founded LaunchFrame, and led a 14 person team at The Westminster Schools. She helped scale Apple’s 10 engineer deployment team to 1,000+ institutions, with about 60% shorter timelines and 99% satisfaction.",
     href: "#experience",
     linkLabel: "Follow Laura’s path",
+  },
+  {
+    id: "strategy",
+    keywords: [
+      "product strategy",
+      "strategy",
+      "approach",
+      "prioritize",
+      "decisions",
+      "how do you work",
+    ],
+    answer:
+      "Laura starts with the customer’s problem, proves ideas with a working build before committing, and decides where data lives and who controls it before choosing a model.",
+    href: "#approach",
+    linkLabel: "How Laura leads",
+  },
+  {
+    id: "next",
+    keywords: [
+      "next",
+      "future",
+      "interested in",
+      "thinking about",
+      "problems",
+      "solving next",
+    ],
+    answer:
+      "Laura is focused on moving AI from experimentation to meaningful, responsible adoption: human-centered AI products, private and on-device intelligence, AI adoption at organizational scale, and building high-performing technical teams.",
+    href: "#next",
+    linkLabel: "What Laura is thinking about next",
   },
   {
     id: "contact",

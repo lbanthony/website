@@ -56,7 +56,11 @@ test("questions stay in the browser and project details open by tap and keyboard
     if (request.url().includes("/api/chat")) chatRequests.push(request.url());
   });
   await page.goto("/");
-  await page.getByRole("button", { name: "Why private AI?" }).click();
+  await page.getByRole("button", { name: "What teams have you led?" }).click();
+  await expect(page.locator(".answer-copy")).toContainText("14 direct reports");
+  await page.getByRole("button", { name: "Clear answer" }).click();
+  await page.getByRole("textbox").fill("Why private, on-device AI?");
+  await page.getByRole("textbox").press("Enter");
   await expect(page.locator(".answer-copy")).toContainText(
     "organization-owned infrastructure",
   );

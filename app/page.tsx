@@ -1,16 +1,18 @@
 import Image from "next/image";
-import { ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight } from "lucide-react";
 import { CaseVisual } from "@/components/case-visuals";
 import { Intersection } from "@/components/intersection";
 import { ProfileGuide } from "@/components/profile-guide";
 import {
   caseStudies,
   contact,
+  credentials,
   education,
   experience,
-  glance,
+  experiments,
   headline,
-  moreWork,
+  nextFocus,
+  teamStats,
   type CaseStudy,
 } from "@/lib/profile";
 
@@ -55,6 +57,7 @@ function CaseStudyBlock({
               </div>
             ))}
           </dl>
+          {study.metricsNote && <p className="metrics-note mono">{study.metricsNote}</p>}
         </div>
       </div>
 
@@ -114,18 +117,22 @@ export default function Home() {
             </h1>
             <p className="hero-intro">{headline.intro}</p>
             <div className="hero-actions">
-              <a className="button button--solid" href={`mailto:${contact.email}`}>
+              <a className="button button--solid" href="#work">
+                Explore my work
+                <ArrowDown size={16} aria-hidden="true" />
+              </a>
+              <a className="button" href={`mailto:${contact.email}`}>
                 Email me
                 <ArrowUpRight size={16} aria-hidden="true" />
               </a>
               <a
-                className="button"
+                className="text-action"
                 href={contact.linkedin}
                 target="_blank"
                 rel="noreferrer"
               >
                 LinkedIn
-                <ArrowUpRight size={16} aria-hidden="true" />
+                <ArrowUpRight size={15} aria-hidden="true" />
               </a>
             </div>
           </div>
@@ -143,14 +150,15 @@ export default function Home() {
             </div>
           </figure>
 
-          <ol className="glance" aria-label="At a glance">
-            {glance.map((item, i) => (
-              <li key={item.label}>
+          <ol className="glance" aria-label="Credentials at a glance">
+            {credentials.map((item, i) => (
+              <li key={item.label} className={item.accent ? "is-accent" : undefined}>
                 <a href={item.href}>
                   <span className="glance-label mono">
                     0{i + 1} {item.label}
                   </span>
-                  <span className="glance-value">{item.value}</span>
+                  <span className="glance-number">{item.value}</span>
+                  <span className="glance-caption">{item.caption}</span>
                   <ArrowDownRight size={16} className="glance-arrow" aria-hidden="true" />
                 </a>
               </li>
@@ -177,11 +185,19 @@ export default function Home() {
           <CaseStudyBlock study={caseStudies[2]} index={2} size="compact" />
 
           <div className="more-work">
-            <h3 className="mono more-title">More I’m building</h3>
-            {moreWork.map((project) => (
+            <div className="more-head">
+              <h3 className="more-title">
+                Experiments in applied <em>AI.</em>
+              </h3>
+              <p>
+                Research, prototypes, and working tools I build on my own time,
+                each labeled with how far along it is.
+              </p>
+            </div>
+            {experiments.map((project) => (
               <details className="project-row" key={project.id} id={project.id}>
                 <summary>
-                  <span className="project-category mono">{project.category}</span>
+                  <span className="project-category mono">{project.status}</span>
                   <span className="project-name">{project.name}</span>
                   <span className="project-summary">{project.summary}</span>
                   <span className="project-open" aria-hidden="true" />
@@ -189,7 +205,7 @@ export default function Home() {
                 <div className="project-expanded">
                   <p>{project.description}</p>
                   <p className="mono">
-                    {project.status} · {project.tools.join(" · ")}
+                    {project.category} · {project.tools.join(" · ")}
                   </p>
                 </div>
               </details>
@@ -201,7 +217,7 @@ export default function Home() {
         <section className="overlap" aria-labelledby="overlap-title">
           <div className="wrap section-space overlap-inner">
             <div className="section-head section-head--tight">
-              <p className="mono section-kicker">Why it works</p>
+              <p className="mono section-kicker">Where I bring the most value</p>
               <h2 id="overlap-title">
                 My work lives where three disciplines meet.
               </h2>
@@ -218,7 +234,7 @@ export default function Home() {
         >
           <div className="section-head">
             <p className="mono section-kicker">Experience</p>
-            <h2 id="experience-title">Ten years of leading and building.</h2>
+            <h2 id="experience-title">A career built around people and technology.</h2>
           </div>
           <ol className="experience-list">
             {experience.map((job) => (
@@ -240,6 +256,34 @@ export default function Home() {
               <li key={line}>{line}</li>
             ))}
           </ul>
+        </section>
+
+        {/* ---------- Building teams ---------- */}
+        <section id="teams" className="teams" aria-labelledby="teams-title">
+          <div className="wrap teams-inner">
+            <div className="teams-head">
+              <p className="mono section-kicker">People leadership</p>
+              <h2 id="teams-title">
+                Building teams, <em>not just</em> technology.
+              </h2>
+              <p className="teams-lead">
+                Before Apple, I managed people and owned the business directly:
+                an engineering team at The Westminster Schools and a consultancy
+                I co-founded.
+              </p>
+            </div>
+            <dl className="team-stats">
+              {teamStats.map((stat) => (
+                <div key={stat.label} className={stat.accent ? "is-accent" : undefined}>
+                  <dt>
+                    <span className="team-label">{stat.label}</span>
+                    <span className="team-org mono">{stat.org}</span>
+                  </dt>
+                  <dd className="team-value">{stat.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </section>
 
         {/* ---------- Approach ---------- */}
@@ -280,6 +324,20 @@ export default function Home() {
           </div>
         </section>
 
+        {/* ---------- What's next ---------- */}
+        <section id="next" className="next wrap" aria-labelledby="next-title">
+          <div className="next-head">
+            <p className="mono section-kicker">Looking ahead</p>
+            <h2 id="next-title">What I’m thinking about next.</h2>
+            <p className="next-lead">{nextFocus.lead}</p>
+          </div>
+          <ol className="next-list">
+            {nextFocus.areas.map((area) => (
+              <li key={area}>{area}</li>
+            ))}
+          </ol>
+        </section>
+
         {/* ---------- About ---------- */}
         <section id="about" className="about wrap section-space" aria-labelledby="about-title">
           <figure className="about-photo">
@@ -293,10 +351,11 @@ export default function Home() {
           </figure>
           <div className="about-copy">
             <p className="mono section-kicker">About</p>
-            <h2 id="about-title">Educator, engineering manager, co-founder.</h2>
+            <h2 id="about-title">From the classroom to engineering leadership.</h2>
             <p>
-              I started in schools, moved into engineering leadership, and
-              co-founded a company along the way. Today I work at Apple.
+              I started in schools as a Director of Technology, moved into
+              engineering management, and co-founded a company along the way.
+              Today I work at Apple.
             </p>
             <p>
               Across all of it, the job has been the same: understand what people

@@ -34,3 +34,19 @@ test("experimental model work never claims a proven improvement", () => {
     /does not claim a proven improvement/,
   );
 });
+
+test("recruiter questions land on the right topics", () => {
+  const cases: [string, RegExp][] = [
+    ["What teams have you led?", /14 direct reports/],
+    ["What AI products have you built?", /Classroom AI/],
+    ["What is your technical background?", /SwiftUI/],
+    ["How have you delivered measurable impact?", /60% shorter timelines/],
+    ["How do you approach product strategy?", /customer’s problem/],
+    ["What is your leadership philosophy?", /14 direct reports/],
+    ["How has your career evolved?", /LaunchFrame/],
+    ["What problems are you interested in solving next?", /responsible adoption/],
+    ["What’s next for you?", /responsible adoption/],
+  ];
+  for (const [q, expected] of cases)
+    assert.match(answerFromProfile(q).answer, expected, q);
+});

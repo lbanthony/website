@@ -92,7 +92,7 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
           name="question"
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          placeholder="What are you building, Laura?"
+          placeholder="Ask about Laura’s teams, products, or experience"
           maxLength={600}
           autoComplete="off"
           disabled={pending}
@@ -115,21 +115,18 @@ export function ProfileGuide({ aiAvailable }: { aiAvailable: boolean }) {
         </button>
       </form>
       <div className="suggestions" aria-label="Suggested questions">
-        {["What are you building?", "Why private AI?", "How do you lead?"].map(
-          (label, i) => (
+        {[
+          "What teams have you led?",
+          "What AI products have you built?",
+          "How have you delivered impact?",
+          "What’s next for you?",
+        ].map(
+          (label) => (
             <button
               key={label}
               type="button"
               disabled={pending}
-              onClick={() =>
-                void ask(
-                  [
-                    "What are you building?",
-                    "Why private AI?",
-                    "How do you lead a team?",
-                  ][i],
-                )
-              }
+              onClick={() => void ask(label)}
             >
               {label}
               <ArrowUpRight size={12} aria-hidden="true" />

@@ -47,13 +47,6 @@ export const glance = [
   },
 ];
 
-export const impact = [
-  { value: "60%", label: "shorter deployment timelines, from 35 weeks to 14" },
-  { value: "1,000+", label: "institutions supported by the team I helped scale" },
-  { value: "14", label: "direct reports led at The Westminster Schools" },
-  { value: "45%", label: "annual growth as co-founder of LaunchFrame" },
-];
-
 export type Visual = "architecture" | "timeline" | "field";
 
 export type CaseStudy = {

@@ -10,7 +10,6 @@ import {
   experience,
   glance,
   headline,
-  impact,
   moreWork,
   type CaseStudy,
 } from "@/lib/profile";
@@ -159,22 +158,6 @@ export default function Home() {
           </ol>
         </section>
 
-        {/* ---------- Impact ---------- */}
-        <section className="impact" aria-labelledby="impact-title">
-          <div className="wrap">
-            <h2 id="impact-title" className="mono impact-title">
-              Impact
-            </h2>
-            <dl className="impact-grid">
-              {impact.map((item) => (
-                <div key={item.value}>
-                  <dt className="impact-label">{item.label}</dt>
-                  <dd className="impact-value">{item.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
 
         {/* ---------- Selected work ---------- */}
         <section id="work" className="work wrap section-space" aria-labelledby="work-title">

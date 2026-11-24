@@ -78,18 +78,18 @@ export const caseStudies: CaseStudy[] = [
     name: "Classroom AI",
     kicker: "Zero to one product · Private AI",
     status: "Working prototype · active development",
-    thesis: "Private AI for schools, running on Macs the school already owns.",
+    thesis: "Private AI for classrooms that runs entirely on the device.",
     problem:
       "Schools want AI that helps students and teachers, but many cannot send student data to someone else’s cloud.",
     role: "Product and engineering, end to end. I defined the workflows and built every layer.",
-    work: "A SwiftUI app connected to MLX inference and a Python and FastAPI backend, with authentication, networking, and tests. Designed for guided tutoring, lesson planning, and school workflows, with teachers in control.",
+    work: "A native SwiftUI app for Mac and iPad that runs fully on device. It uses Apple’s Foundation Models framework first, falls back to MLX, and never needs a network connection. Designed for guided tutoring, lesson planning, and school workflows, with teachers in control.",
     outcome:
-      "A working prototype in active development that keeps data on hardware the school controls.",
+      "A working prototype in active development, about 58,000 lines of Swift, that keeps student data on the device.",
     metrics: [
-      { value: "3", label: "layers built: app, inference, backend" },
-      { value: "Local", label: "open models on school-owned Macs" },
+      { value: "58K+", label: "lines of Swift across about 237 files" },
+      { value: "0", label: "network connections needed" },
     ],
-    tools: ["SwiftUI", "MLX", "Python and FastAPI", "Apple silicon"],
+    tools: ["SwiftUI", "Foundation Models", "MLX", "Mac and iPad"],
     visual: "architecture",
   },
   {
@@ -207,7 +207,7 @@ export const intersection = [
     id: "ai",
     name: "AI and engineering",
     evidence:
-      "I build the systems myself: native apps in SwiftUI, local models on MLX, Python backends, fine-tuning, and evaluation.",
+      "I build the systems myself: native apps in SwiftUI, on-device models with Foundation Models and MLX, Python tooling, fine-tuning, and evaluation.",
     proof: ["Classroom AI", "Mills Lake Model", "Private Vision Workshop"],
   },
   {
@@ -230,8 +230,8 @@ export const intersection = [
 // managed people and owned the business directly.
 export const teamStats = [
   { value: "14", label: "direct reports led", org: "The Westminster Schools", accent: true },
-  { value: "100%", label: "staff retention on that team", org: "The Westminster Schools" },
-  { value: "$1M", label: "technology budget managed", org: "The Westminster Schools" },
+  { value: "100%", label: "staff retention for my whole time leading the team", org: "The Westminster Schools" },
+  { value: "$1M", label: "technology budget managed each school year", org: "The Westminster Schools" },
   { value: "45%", label: "annual growth as co-founder", org: "LaunchFrame" },
   { value: "85%", label: "client retention across 150+ clients", org: "LaunchFrame" },
   { value: "5", label: "specialists moved into engineering roles", org: "LaunchFrame" },
@@ -360,7 +360,7 @@ export const profileTopics = [
       "academic integrity",
     ],
     answer:
-      "Laura built Classroom AI’s SwiftUI app and supporting architecture, connecting MLX inference to a Python and FastAPI backend on school-owned Macs. Designed for tutoring and educator workflows, it is a working prototype in active development.",
+      "Laura built Classroom AI, a native SwiftUI app for Mac and iPad that runs fully on device, using Apple’s Foundation Models framework first with MLX as a fallback and no network connection. Designed for tutoring and educator workflows, it is a working prototype in active development.",
     href: "#classroom-ai",
     linkLabel: "Read the Classroom AI case study",
   },
@@ -434,8 +434,7 @@ export const profileTopics = [
       "tools",
       "framework",
       "swiftui",
-      "fastapi",
-      "mlx",
+            "mlx",
       "engineering",
       "python",
       "native apps",
@@ -443,7 +442,7 @@ export const profileTopics = [
       "technical skills",
     ],
     answer:
-      "Swift and SwiftUI, MLX and local models, Python and FastAPI, LoRA, retrieval, Create ML, Vision, and Core ML. Laura also works across networking, security, and deployment architecture.",
+      "Swift and SwiftUI, Apple’s Foundation Models framework, MLX and local models, Python, LoRA, retrieval, Create ML, Vision, and Core ML. Laura also works across networking, security, and deployment architecture.",
     href: "#work",
     linkLabel: "See those skills in context",
   },

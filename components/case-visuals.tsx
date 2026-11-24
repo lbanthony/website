@@ -11,7 +11,7 @@ function ArchitectureVisual() {
         className="v-arch"
       />
       <text x="320" y="78" textAnchor="middle" className="v-mono">
-        ON HARDWARE THE SCHOOL OWNS
+        ON THE DEVICE · NO NETWORK
       </text>
 
       <path
@@ -30,27 +30,27 @@ function ArchitectureVisual() {
         Native app
       </text>
       <text x="320" y="323" textAnchor="middle" className="v-mono v-on-ink">
-        SWIFTUI
+        SWIFTUI · MAC AND IPAD
       </text>
 
       <path d="M320 336V356H210V376M320 356H430V376" className="v-wire" />
       <rect x="110" y="376" width="200" height="92" className="v-rust" />
       <text x="210" y="418" textAnchor="middle" className="v-title v-on-ink">
-        Local models
+        Foundation Models
       </text>
       <text x="210" y="440" textAnchor="middle" className="v-mono v-on-ink">
-        MLX INFERENCE
+        FIRST CHOICE
       </text>
       <rect x="330" y="376" width="200" height="92" className="v-outline" />
       <text x="430" y="418" textAnchor="middle" className="v-title">
-        Backend
+        MLX
       </text>
       <text x="430" y="440" textAnchor="middle" className="v-mono">
-        PYTHON · FASTAPI
+        FALLBACK
       </text>
 
       <text x="320" y="512" textAnchor="middle" className="v-mono">
-        RUNS LOCALLY · TEACHERS IN CONTROL
+        NOTHING LEAVES THE DEVICE · TEACHERS IN CONTROL
       </text>
     </svg>
   );
@@ -147,7 +147,7 @@ function FieldVisual() {
 
 const descriptions: Record<Visual, string> = {
   architecture:
-    "Diagram: students, teachers, and staff use a native SwiftUI app, which connects to local models running on MLX and a Python and FastAPI backend, all on hardware the school owns.",
+    "Diagram: students, teachers, and staff use a native SwiftUI app for Mac and iPad. It runs Apple’s Foundation Models framework first and falls back to MLX, entirely on the device with no network connection.",
   timeline:
     "Chart: deployment time fell from 35 weeks to 14 weeks, saving 21 weeks, with a team of 10 engineers supporting more than 1,000 institutions.",
   field:

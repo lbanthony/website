@@ -36,7 +36,7 @@ export const credentials = [
   {
     label: "Scale",
     value: "1,000+",
-    caption: "institutions supported by the Apple team I helped build",
+    caption: "institutions I’ve worked with directly at Apple",
     href: "#deployment-success",
   },
   {
@@ -104,11 +104,11 @@ export const caseStudies: CaseStudy[] = [
     role: "Helped build and scale a national deployment engineering team, growing it to 10 engineers.",
     work: "Focused the team on customer discovery and deployment architecture, so every rollout started from the customer’s real constraints.",
     outcome:
-      "About 60% shorter timelines, from 35 weeks to 14, across 1,000+ institutions with 99% customer satisfaction.",
+      "About 60% shorter timelines, from 35 weeks to 14, across 1,000+ institutions I worked with directly, with a Net Promoter Score of 99.",
     metrics: [
       { value: "35 → 14", label: "weeks per deployment" },
-      { value: "1,000+", label: "institutions" },
-      { value: "99%", label: "customer satisfaction" },
+      { value: "1,000+", label: "institutions I worked with directly" },
+      { value: "99", label: "Net Promoter Score" },
       { value: "10", label: "engineers on the team" },
     ],
     metricsNote: "Team results",
@@ -127,10 +127,10 @@ export const caseStudies: CaseStudy[] = [
     role: "Designed and built the automation and analysis workflows.",
     work: "Automated analysis with large language model assisted insights, tailored to the different audiences who needed them.",
     outcome:
-      "Clear adoption and reliability patterns, and 40% better communication between field teams and engineering.",
+      "Clear adoption and reliability patterns, and a 35% increase in adoption.",
     metrics: [
       { value: "5,000+", label: "data points analyzed" },
-      { value: "40%", label: "better communication between field teams and engineering" },
+      { value: "35%", label: "increase in adoption" },
     ],
     tools: ["Data analysis", "Automation", "AI assisted insights"],
     visual: "field",
@@ -232,7 +232,7 @@ export const teamStats = [
   { value: "14", label: "direct reports led", org: "The Westminster Schools", accent: true },
   { value: "100%", label: "staff retention for my whole time leading the team", org: "The Westminster Schools" },
   { value: "$1M", label: "technology budget managed each school year", org: "The Westminster Schools" },
-  { value: "45%", label: "annual growth as co-founder", org: "LaunchFrame" },
+  { value: "45%", label: "average annual growth as co-founder", org: "LaunchFrame" },
   { value: "85%", label: "client retention across 150+ clients", org: "LaunchFrame" },
   { value: "5", label: "specialists moved into engineering roles", org: "LaunchFrame" },
 ];
@@ -255,7 +255,7 @@ export const experience = [
     role: "Local AI/ML Workflows & Education",
     scope: "National team of 10 engineers · 1,000+ institutions",
     highlights:
-      "Helped build and scale Deployment Success Engineering, with about 60% shorter deployment timelines and 99% satisfaction. Built Life of Mac analytics from 5,000+ data points, improving communication between field teams and engineering by 40%.",
+      "Helped build and scale Deployment Success Engineering, with about 60% shorter deployment timelines and a Net Promoter Score of 99. Built Life of Mac analytics from 5,000+ data points, contributing to a 35% increase in adoption.",
   },
   {
     org: "The Westminster Schools",
@@ -488,7 +488,7 @@ export const profileTopics = [
       "career path",
     ],
     answer:
-      "Laura works at Apple, co-founded LaunchFrame, and led a 14 person team at The Westminster Schools. She helped scale Apple’s 10 engineer deployment team to 1,000+ institutions, with about 60% shorter timelines and 99% satisfaction.",
+      "Laura works at Apple, co-founded LaunchFrame, and led a 14 person team at The Westminster Schools. At Apple she has worked directly with 1,000+ institutions and helped scale a 10 engineer deployment team, with about 60% shorter timelines and a Net Promoter Score of 99.",
     href: "#experience",
     linkLabel: "Follow Laura’s path",
   },

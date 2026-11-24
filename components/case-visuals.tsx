@@ -149,7 +149,7 @@ const descriptions: Record<Visual, string> = {
   architecture:
     "Diagram: students, teachers, and staff use a native SwiftUI app for Mac and iPad. It runs Apple’s Foundation Models framework first and falls back to MLX, entirely on the device with no network connection.",
   timeline:
-    "Chart: deployment time fell from 35 weeks to 14 weeks, saving 21 weeks, with a team of 10 engineers supporting more than 1,000 institutions.",
+    "Chart: deployment time fell from 35 weeks to 14 weeks, saving 21 weeks, with a team of 10 engineers, across more than 1,000 institutions.",
   field:
     "Illustration: a field of data points with two highlighted clusters, labeled adoption blockers and reliability patterns.",
 };

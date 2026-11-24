@@ -117,18 +117,18 @@ h1 em, h2 em, blockquote em {
   background: linear-gradient(90deg, var(--rust) 50%, var(--ink) 50%);
 }
 .site-header nav { display: flex; align-items: center; gap: clamp(14px, 2.4vw, 34px); font-size: 16px; }
-.site-header nav a:not(.nav-resume) {
+.site-header nav a:not(.nav-cta) {
   background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
   transition: background-size 0.3s var(--ease);
   padding-bottom: 2px;
 }
-.site-header nav a:not(.nav-resume):hover { background-size: 100% 1px; }
-.nav-resume {
+.site-header nav a:not(.nav-cta):hover { background-size: 100% 1px; }
+.nav-cta {
   display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
   border: 1px solid var(--ink); padding: 8px 14px; font-weight: 500;
   transition: background 0.2s, color 0.2s;
 }
-.nav-resume:hover { background: var(--ink); color: var(--paper); }
+.nav-cta:hover { background: var(--ink); color: var(--paper); }
 
 /* ---------- Hero ---------- */
 .hero {
@@ -513,7 +513,7 @@ h1 em, h2 em, blockquote em {
 @media (max-width: 860px) {
   body { font-size: 17px; }
   .site-header { min-height: 72px; }
-  .site-header nav a:not(.nav-resume) { display: none; }
+  .site-header nav a:not(.nav-cta) { display: none; }
   .hero, .section-head, .case-body, .intersection, .experience-list li, .about { grid-template-columns: minmax(0, 1fr); }
   .hero-copy, .hero-portrait, .glance, .section-head h2, .section-lead, .case-visual, .case-copy,
   .case--reverse .case-visual, .case--reverse .case-copy, .case--compact .case-visual, .case--compact .case-copy,
@@ -552,7 +552,7 @@ h1 em, h2 em, blockquote em {
   .impact-grid { grid-template-columns: minmax(0, 1fr); }
   .case-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero-actions .button { flex: 1 1 auto; justify-content: center; }
-  .nav-resume { padding: 7px 10px; font-size: 15px; }
+  .nav-cta { padding: 7px 10px; font-size: 15px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

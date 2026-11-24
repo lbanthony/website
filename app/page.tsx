@@ -15,24 +15,6 @@ import {
   type CaseStudy,
 } from "@/lib/profile";
 
-const resumeHref =
-  contact.resume || `mailto:${contact.email}?subject=R%C3%A9sum%C3%A9%20request`;
-const resumeLabel = contact.resume ? "Résumé" : "Request résumé";
-const resumeExternal = Boolean(contact.resume);
-
-function ResumeLink({ className, short = false }: { className: string; short?: boolean }) {
-  return (
-    <a
-      href={resumeHref}
-      className={className}
-      {...(resumeExternal ? { target: "_blank", rel: "noreferrer" } : {})}
-    >
-      {short ? "Résumé" : resumeLabel}
-      <ArrowUpRight size={15} aria-hidden="true" />
-    </a>
-  );
-}
-
 function CaseStudyBlock({
   study,
   index,
@@ -115,8 +97,9 @@ export default function Home() {
           <a href="#work">Work</a>
           <a href="#experience">Experience</a>
           <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <ResumeLink className="nav-resume" short />
+          <a href="#contact" className="nav-cta">
+            Contact
+          </a>
         </nav>
       </header>
 
@@ -145,7 +128,6 @@ export default function Home() {
                 LinkedIn
                 <ArrowUpRight size={16} aria-hidden="true" />
               </a>
-              <ResumeLink className="button" />
             </div>
           </div>
           <figure className="hero-portrait">
@@ -366,16 +348,6 @@ export default function Home() {
                 <a href={contact.linkedin} target="_blank" rel="noreferrer">
                   <span className="mono">LinkedIn</span>
                   <span className="contact-value">in/lbanthony91</span>
-                  <ArrowUpRight size={22} aria-hidden="true" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href={resumeHref}
-                  {...(resumeExternal ? { target: "_blank", rel: "noreferrer" } : {})}
-                >
-                  <span className="mono">Résumé</span>
-                  <span className="contact-value">{resumeLabel}</span>
                   <ArrowUpRight size={22} aria-hidden="true" />
                 </a>
               </li>

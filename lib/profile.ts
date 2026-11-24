@@ -7,10 +7,6 @@ export const contact = {
   email: "lbanthony91@gmail.com",
   github: "https://github.com/lbanthony",
   linkedin: "https://www.linkedin.com/in/lbanthony91/",
-  // Add your résumé PDF to public/ and put its path here, for example
-  // "/laura-anthony-resume.pdf". While this is empty, the site shows a
-  // "Request résumé" email link instead.
-  resume: "",
 };
 
 export const headline = {
@@ -130,8 +126,11 @@ export const caseStudies: CaseStudy[] = [
     role: "Designed and built the automation and analysis workflows.",
     work: "Automated analysis with large language model assisted insights, tailored to the different audiences who needed them.",
     outcome:
-      "Clear adoption and reliability patterns, shared in a form each audience could use.",
-    metrics: [{ value: "5,000+", label: "data points analyzed" }],
+      "Clear adoption and reliability patterns, and 40% better communication between field teams and engineering.",
+    metrics: [
+      { value: "5,000+", label: "data points analyzed" },
+      { value: "40%", label: "better communication between field teams and engineering" },
+    ],
     tools: ["Data analysis", "Automation", "AI assisted insights"],
     visual: "field",
   },
@@ -230,10 +229,10 @@ export const experience = [
   {
     org: "Apple",
     years: "2019 to now",
-    role: "Engineering, education technology, and enterprise deployment",
+    role: "Local AI/ML Workflows & Education",
     scope: "National team of 10 engineers · 1,000+ institutions",
     highlights:
-      "Helped build and scale Deployment Success Engineering, with about 60% shorter deployment timelines and 99% satisfaction. Built Life of Mac analytics from 5,000+ data points.",
+      "Helped build and scale Deployment Success Engineering, with about 60% shorter deployment timelines and 99% satisfaction. Built Life of Mac analytics from 5,000+ data points, improving communication between field teams and engineering by 40%.",
   },
   {
     org: "The Westminster Schools",
@@ -257,7 +256,7 @@ export const experience = [
     role: "Director of Technology",
     scope: "4 person team · 1,000+ users",
     highlights:
-      "Launched the school’s first one to one iPad program and its first student run help desk.",
+      "Launched the school’s first one to one iPad program.",
   },
 ];
 
@@ -474,7 +473,7 @@ export const profileTopics = [
       "cv",
     ],
     answer:
-      "Email lbanthony91@gmail.com or connect on LinkedIn. For a current résumé or availability, contact Laura directly.",
+      "Email lbanthony91@gmail.com or connect on LinkedIn. For availability, contact Laura directly.",
     href: "#contact",
     linkLabel: "Get in touch",
   },
